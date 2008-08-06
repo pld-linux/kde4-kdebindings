@@ -12,6 +12,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version
 BuildRequires:	QtGui-devel >= 4.4.0
 BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kde4-kdepimlibs-devel >= %{version}
+BuildRequires:	mono-csharp
 BuildRequires:	python-PyQt4-devel >= 4.4.2
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
