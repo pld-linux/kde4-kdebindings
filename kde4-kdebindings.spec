@@ -161,6 +161,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libsmokeqtwebkit.so.2.0.0
 %attr(755,root,root) %{_libdir}/libsmokeqtscript.so.2.0.0
 %attr(755,root,root) %{_libdir}/libsmokeqtuitools.so.2.0.0
+%attr(755,root,root) %{_libdir}/libqtscript-sharp.so
+%attr(755,root,root) %{_libdir}/libqtuitools-sharp.so
+%attr(755,root,root) %{_libdir}/libqtwebkit-sharp.so
 
 %files smoke-qt-devel
 %defattr(644,root,root,755)
@@ -176,6 +179,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libsmokephonon.so.2.0.0
 %attr(755,root,root) %{_libdir}/libsmokesolid.so.2.0.0
 %attr(755,root,root) %{_libdir}/libsmokesoprano.so.2.0.0
+%attr(755,root,root) %{_libdir}/libsmokeqsci.so.2.0.0
 %{_libdir}/libsmokekde.so
 %attr(755,root,root) %{_libdir}/libsmokekde.so.2
 %{_libdir}/libsmokekhtml.so
