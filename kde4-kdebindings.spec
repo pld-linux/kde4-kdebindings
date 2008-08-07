@@ -15,6 +15,8 @@ BuildRequires:	kde4-kdepimlibs-devel >= %{version}
 BuildRequires:	mono-csharp
 BuildRequires:	python-PyQt4-devel >= 4.4.2
 BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	ruby-devel
+BuildRequires:	python-sip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -25,6 +27,17 @@ widgets.
 %description -l pl.UTF-8
 Dowiązania KDE/qt dla języków innych niż C++ pozwalające używać
 natywnych dla KDE zasobów i widgetów.
+
+%package kimono
+Summary:	C# Mono KDE4 bindings
+Summary(pl.UTF-8):	Dowiązania C# Mono do KDE4
+Group:		X11/Development/Libraries
+
+%description kimono
+C# Mono KDE4 bindings.
+
+%description kimono -l pl.UTF-8
+Dowiązania C# Mono do KDE4.
 
 %package ruby-qt
 Summary:	A SMOKE library for qt
@@ -47,6 +60,17 @@ A KDE bindings for Ruby using the SMOKE technology.
 
 %description ruby-kde -l pl.UTF-8
 
+%package ruby-devel
+Summary:	Ruby header files
+Summary(pl.UTF-8):	Pliki nagłówkowe dla ruby
+Group:		X11/Development/Libraries
+
+%description ruby-devel
+Ruby header files.
+
+%description ruby-devel -l pl.UTF-8
+Pliki nagłówkowe dla ruby.
+
 %package smoke-qt
 Summary:	A SMOKE library for qt
 Summary(pl.UTF-8):	Biblioteka SMOKE dla qt
@@ -58,39 +82,28 @@ SMOKE library (Scripting Meta Object Kompiler Engine) dla qt.
 %description smoke-qt -l pl.UTF-8
 Biblioteka SMOKE (Silnik kompilatora metaobiektów skryptowych) dla qt.
 
-%package smoke-qt-devel
-Summary:	smoke-qt header files
-Summary(pl.UTF-8):	Pliki nagłówkowe dla smoke-qt
-Group:		X11/Development/Libraries
-
-%description smoke-qt-devel
-smoke-qt header files.
-
-%description smoke-qt-devel -l pl.UTF-8
-Pliki nagłówkowe dla smoke-qt.
-
 %package smoke-kde
 Summary:	A SMOKE library for qt
 Summary(pl.UTF-8):	Biblioteka SMOKE dla qt
 Group:		X11/Development/Libraries
 
 %description smoke-kde
-SMOKE library (Scripting Meta Object Kompiler Engine) dla KDE.
+SMOKE library (Scripting Meta Object Kompiler Engine) dla KDE4.
 
 %description smoke-kde -l pl.UTF-8
 Biblioteka SMOKE (Silnik kompilatora metaobiektów skryptowych) dla
-KDE.
+KDE4.
 
-%package smoke-kde-devel
-Summary:	smoke-qt header files
-Summary(pl.UTF-8):	Pliki nagłówkowe dla smoke-qt
+%package smoke-devel
+Summary:	smoke header files
+Summary(pl.UTF-8):	Pliki nagłówkowe dla smoke
 Group:		X11/Development/Libraries
 
-%description smoke-kde-devel
-smoke-kde header files.
+%description smoke-devel
+Smoke header files.
 
-%description smoke-kde-devel -l pl.UTF-8
-Pliki nagłówkowe dla smoke-kde.
+%description smoke-devel -l pl.UTF-8
+Pliki nagłówkowe dla smoke.
 
 %package -n python-PyKDE4
 Summary:	Python bindings for KDE
@@ -124,6 +137,28 @@ PyKDE4 examples
 %description -n python-PyKDE4-examples -l pl.UTF-8
 Przykłady PyKDE4
 
+%package -n qyoto
+Summary:	C# Mono Qt4 bindings
+Summary(pl.UTF-8):	Dowiązania C# Mono dla Qt4
+Group:		X11/Development/Libraries
+
+%description -n qyoto
+C# Mono Qt4 bindings.
+
+%description -n qyoto -l pl.UTF-8
+Dowiązania C# Mono dla Qt4.
+
+%package -n qyoto-devel
+Summary:	qyoto header files
+Summary(pl.UTF-8):	pliki nagłówkowe dla qyoto
+Group:		X11/Development/Libraries
+
+%description -n qyoto-devel
+qyoto header files.
+
+%description -n qyoto-devel -l pl.UTF-8
+pliki nagłówkowe dla qyoto.
+
 %prep
 %setup -q -n %{orgname}-%{version}
 
@@ -149,106 +184,149 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/pykde4
 	kde_htmldir=%{_kdedocdir}
 
 mv $RPM_BUILD_ROOT%{_datadir}/apps/pykde4/examples/* $RPM_BUILD_ROOT%{_examplesdir}/pykde4
+%py_comp $RPM_BUILD_ROOT%{py_sitedir}/PyKDE4
+%py_ocomp $RPM_BUILD_ROOT%{py_sitedir}/PyKDE4
+%py_postclean
 
 %find_lang pykde4 --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files smoke-qt
+%files kimono
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libsmokeqt.so.2.0.0
-%attr(755,root,root) %{_libdir}/libsmokeqtwebkit.so.2.0.0
-%attr(755,root,root) %{_libdir}/libsmokeqtscript.so.2.0.0
-%attr(755,root,root) %{_libdir}/libsmokeqtuitools.so.2.0.0
+%attr(755,root,root) %{_libdir}/kde4/kimonopluginfactory.so
+%attr(755,root,root) %{_libdir}/libkhtml-sharp.so
+%attr(755,root,root) %{_libdir}/libnepomuk-sharp.so
+%attr(755,root,root) %{_libdir}/libsoprano-sharp.so
+%attr(755,root,root) %{_libdir}/libkimono.so
+%dir %{_libdir}/mono
+%{_libdir}/mono/2.0/kde-dotnet.dll
+%{_libdir}/mono/2.0/khtml.dll
+%{_libdir}/mono/2.0/soprano.dll
+%{_libdir}/mono/2.0/nepomuk.dll
+%{_libdir}/mono/gac/kde-dotnet
+%{_libdir}/mono/gac/khtml
+%{_libdir}/mono/gac/nepomuk
+%{_libdir}/mono/gac/soprano
+
+%files -n qyoto
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libqyoto.so
+%attr(755,root,root) %{_libdir}/libqyotoshared.so
 %attr(755,root,root) %{_libdir}/libqtscript-sharp.so
 %attr(755,root,root) %{_libdir}/libqtuitools-sharp.so
 %attr(755,root,root) %{_libdir}/libqtwebkit-sharp.so
+%dir %{_libdir}/mono/gac
+%{_libdir}/mono/2.0/qt-dotnet.dll
+%{_libdir}/mono/2.0/qtscript.dll
+%{_libdir}/mono/2.0/qtuitools.dll
+%{_libdir}/mono/2.0/qtwebkit.dll
+%{_libdir}/mono/gac/qt-dotnet
+%{_libdir}/mono/gac/qtscript
+%{_libdir}/mono/gac/qtuitools
+%{_libdir}/mono/gac/qtwebkit
 
-%files smoke-qt-devel
+%files -n qyoto-devel
 %defattr(644,root,root,755)
-%{_includedir}/smoke/*.h
-%{_includedir}/smoke.h
+%attr(755,root,root) %{_bindir}/csrcc
+%attr(755,root,root) %{_bindir}/uics
+%{_includedir}/qyoto
+
+%files smoke-qt
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libsmokeqt.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokeqt.so.?
+%attr(755,root,root) %{_libdir}/libsmokeqtwebkit.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokeqtwebkit.so.?
+%attr(755,root,root) %{_libdir}/libsmokeqtscript.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokeqtscript.so.?
+%attr(755,root,root) %{_libdir}/libsmokeqtuitools.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokeqtuitools.so.?
 
 %files smoke-kde
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libsmokekde.so.2.0.0
-%attr(755,root,root) %{_libdir}/libsmokekhtml.so.2.0.0
-%attr(755,root,root) %{_libdir}/libsmokektexteditor.so.2.0.0
-%attr(755,root,root) %{_libdir}/libsmokenepomuk.so.2.0.0
-%attr(755,root,root) %{_libdir}/libsmokephonon.so.2.0.0
-%attr(755,root,root) %{_libdir}/libsmokesolid.so.2.0.0
-%attr(755,root,root) %{_libdir}/libsmokesoprano.so.2.0.0
-%attr(755,root,root) %{_libdir}/libsmokeqsci.so.2.0.0
-%{_libdir}/libsmokekde.so
-%attr(755,root,root) %{_libdir}/libsmokekde.so.2
-%{_libdir}/libsmokekhtml.so
-%attr(755,root,root) %{_libdir}/libsmokekhtml.so.2
-%{_libdir}/libsmokektexteditor.so
-%attr(755,root,root) %{_libdir}/libsmokektexteditor.so.2
-%{_libdir}/libsmokenepomuk.so
-%attr(755,root,root) %{_libdir}/libsmokenepomuk.so.2
-%{_libdir}/libsmokephonon.so
-%attr(755,root,root) %{_libdir}/libsmokephonon.so.2
-%{_libdir}/libsmokeqt.so
-%attr(755,root,root) %{_libdir}/libsmokeqt.so.2
-%{_libdir}/libsmokeqtscript.so
-%attr(755,root,root) %{_libdir}/libsmokeqtscript.so.2
-%{_libdir}/libsmokeqtuitools.so
-%attr(755,root,root) %{_libdir}/libsmokeqtuitools.so.2
-%{_libdir}/libsmokeqtwebkit.so
-%attr(755,root,root) %{_libdir}/libsmokeqtwebkit.so.2
-%{_libdir}/libsmokesolid.so
-%attr(755,root,root) %{_libdir}/libsmokesolid.so.2
-%{_libdir}/libsmokesoprano.so
-%attr(755,root,root) %{_libdir}/libsmokesoprano.so.2
+%attr(755,root,root) %{_libdir}/libsmokekde.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokekde.so.?
+%attr(755,root,root) %{_libdir}/libsmokekhtml.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokekhtml.so.?
+%attr(755,root,root) %{_libdir}/libsmokektexteditor.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokektexteditor.so.?
+%attr(755,root,root) %{_libdir}/libsmokenepomuk.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokenepomuk.so.?
+%attr(755,root,root) %{_libdir}/libsmokephonon.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokephonon.so.?
+%attr(755,root,root) %{_libdir}/libsmokesolid.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokesolid.so.?
+%attr(755,root,root) %{_libdir}/libsmokesoprano.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokesoprano.so.?
+%attr(755,root,root) %{_libdir}/libsmokeqsci.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokeqsci.so.?
 
-#%files smoke-kde-devel
-#%defattr(644,root,root,755)
+%files smoke-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libsmokeqt.so
+%attr(755,root,root) %{_libdir}/libsmokeqtwebkit.so
+%attr(755,root,root) %{_libdir}/libsmokeqtscript.so
+%attr(755,root,root) %{_libdir}/libsmokeqtuitools.so
+%attr(755,root,root) %{_libdir}/libsmokekde.so
+%attr(755,root,root) %{_libdir}/libsmokekhtml.so
+%attr(755,root,root) %{_libdir}/libsmokektexteditor.so
+%attr(755,root,root) %{_libdir}/libsmokenepomuk.so
+%attr(755,root,root) %{_libdir}/libsmokephonon.so
+%attr(755,root,root) %{_libdir}/libsmokesolid.so
+%attr(755,root,root) %{_libdir}/libsmokesoprano.so
+%attr(755,root,root) %{_libdir}/libsmokeqsci.so
+%{_includedir}/smoke/*.h
+%{_includedir}/smoke.h
 
 %files ruby-qt
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/rbqtapi
 %attr(755,root,root) %{_bindir}/rbuic4
 %attr(755,root,root) %{_bindir}/rbrcc
-%{_libdir}/libqtruby4shared.so
-%{ruby_sitearchdir}/qtruby4.so
+%attr(755,root,root) %{_libdir}/libqtruby4shared.so
+%attr(755,root,root) %{ruby_sitearchdir}/qtruby4.so
 %{ruby_sitelibdir}/Qt.rb
-%{ruby_sitelibdir}/Qt4.rb
 %{ruby_sitelibdir}/Qt3.rb
+%{ruby_sitelibdir}/Qt4.rb
 %{ruby_sitelibdir}/Qt/qtruby4.rb
 %{ruby_sitelibdir}/Qt/active_item_model.rb
 %{ruby_sitelibdir}/Qt/active_table_model.rb
-%{ruby_sitearchdir}/qtwebkit.so
+%attr(755,root,root) %{ruby_sitearchdir}/qtwebkit.so
 %{ruby_sitelibdir}/qtwebkit/qtwebkit.rb
-%{ruby_sitearchdir}/qtuitools.so
+%attr(755,root,root) %{ruby_sitearchdir}/qtuitools.so
 %{ruby_sitelibdir}/qtuitools/qtuitools.rb
-%{ruby_sitearchdir}/qtscript.so
+%attr(755,root,root) %{ruby_sitearchdir}/qtscript.so
 %{ruby_sitelibdir}/qtscript/qtscript.rb
 
 %files ruby-kde
 %defattr(644,root,root,755)
-%{ruby_sitearchdir}/phonon.so
+%attr(755,root,root) %{ruby_sitearchdir}/phonon.so
 %{ruby_sitelibdir}/phonon/phonon.rb
-%{ruby_sitearchdir}/soprano.so
+%attr(755,root,root) %{ruby_sitearchdir}/soprano.so
 %{ruby_sitelibdir}/soprano/soprano.rb
 %{_desktopdir}/kde4/dbpedia_references.desktop
 %{_datadir}/apps/dbpedia_references/dbpedia_references.rb
-%{ruby_sitearchdir}/korundum4.so
-%{_libdir}/kde4/krubypluginfactory.so
+%attr(755,root,root) %{ruby_sitearchdir}/korundum4.so
+%attr(755,root,root) %{_libdir}/kde4/krubypluginfactory.so
 %attr(755,root,root) %{_bindir}/krubyapplication
 %{ruby_sitelibdir}/KDE/korundum4.rb
 %attr(755,root,root) %{_bindir}/rbkconfig_compiler4
-%{ruby_sitearchdir}/khtml.so
+%attr(755,root,root) %{ruby_sitearchdir}/khtml.so
 %{ruby_sitelibdir}/khtml/khtml.rb
-%{ruby_sitearchdir}/ktexteditor.so
+%attr(755,root,root) %{ruby_sitearchdir}/ktexteditor.so
 %{ruby_sitelibdir}/ktexteditor/ktexteditor.rb
-%{ruby_sitearchdir}/nepomuk.so
+%attr(755,root,root) %{ruby_sitearchdir}/nepomuk.so
 %{ruby_sitelibdir}/nepomuk/nepomuk.rb
-%{ruby_sitearchdir}/solid.so
+%attr(755,root,root) %{ruby_sitearchdir}/solid.so
 %{ruby_sitelibdir}/solid/solid.rb
-%{_libdir}/kde4/krossruby.so
-%{_libdir}/kde4/krosspython.so
+%attr(755,root,root) %{_libdir}/kde4/krossruby.so
+%attr(755,root,root) %{_libdir}/kde4/krosspython.so
+
+%files ruby-devel
+%defattr(644,root,root,755)
+%{_includedir}/qtruby/*.h
 
 %files -n python-PyKDE4 -f pykde4.lang
 %defattr(644,root,root,755)
@@ -264,19 +342,19 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitedir}/PyKDE4/knewstuff.so
 %{py_sitedir}/PyKDE4/dnssd.so
 %{py_sitedir}/PyKDE4/phonon.so
-%{py_sitedir}/PyKDE4/soprano.so/
+%{py_sitedir}/PyKDE4/soprano.so
 %{py_sitedir}/PyKDE4/nepomuk.so
 %{py_sitedir}/PyKDE4/akonadi.so
-%{py_sitedir}/PyKDE4/__init__.py
-%{py_sitedir}/PyKDE4/__init__.pyc
-%{py_sitedir}/PyKDE4/pykdeconfig.py
-%{py_sitedir}/PyKDE4/pykdeconfig.pyc
+%{py_sitedir}/PyKDE4/__init__.py[co]
+%{py_sitedir}/PyKDE4/pykdeconfig.py[co]
 %{_datadir}/sip/PyKDE4/glossary.html
+
 %dir %{_datadir}/apps/pykde4
 %{_datadir}/apps/pykde4/kde4.py
 %{_datadir}/apps/pykde4/kde4.pyc
 %{_datadir}/apps/pykde4/pykdeuic4.py
 %{_datadir}/apps/pykde4/pykdeuic4.pyc
+
 %dir %{_datadir}/sip/PyKDE4
 %{_datadir}/sip/PyKDE4/nepomuk
 %{_datadir}/sip/PyKDE4/knewstuff
