@@ -324,25 +324,33 @@ rm -rf $RPM_BUILD_ROOT
 %{ruby_sitelibdir}/Qt.rb
 %{ruby_sitelibdir}/Qt3.rb
 %{ruby_sitelibdir}/Qt4.rb
+%dir %{ruby_sitelibdir}/Qt
 %{ruby_sitelibdir}/Qt/qtruby4.rb
 %{ruby_sitelibdir}/Qt/active_item_model.rb
 %{ruby_sitelibdir}/Qt/active_table_model.rb
 %attr(755,root,root) %{ruby_sitearchdir}/qtwebkit.so
+%dir %{ruby_sitelibdir}/qtwebkit
 %{ruby_sitelibdir}/qtwebkit/qtwebkit.rb
 %attr(755,root,root) %{ruby_sitearchdir}/qtuitools.so
+%dir %{ruby_sitelibdir}/qtuitools
 %{ruby_sitelibdir}/qtuitools/qtuitools.rb
 %attr(755,root,root) %{ruby_sitearchdir}/qtscript.so
+%dir %{ruby_sitelibdir}/qtscript
 %{ruby_sitelibdir}/qtscript/qtscript.rb
 %attr(755,root,root) %{ruby_sitearchdir}/qttest.so
+%dir %{ruby_sitelibdir}/qttest
 %{ruby_sitelibdir}/qttest/qttest.rb
 
 %files ruby-kde
 %defattr(644,root,root,755)
 %attr(755,root,root) %{ruby_sitearchdir}/akonadi.so
+%dir %{ruby_sitelibdir}/akonadi
 %{ruby_sitelibdir}/akonadi/akonadi.rb
 %attr(755,root,root) %{ruby_sitearchdir}/soprano.so
+%dir %{ruby_sitelibdir}/soprano
 %{ruby_sitelibdir}/soprano/soprano.rb
 %{_desktopdir}/kde4/dbpedia_references.desktop
+%dir %{_datadir}/apps/dbpedia_references
 %{_datadir}/apps/dbpedia_references/dbpedia_references.rb
 %dir %{_datadir}/apps/plasma_applet_ruby_clock
 %{_datadir}/apps/plasma_applet_ruby_clock/*.rb
@@ -356,14 +364,19 @@ rm -rf $RPM_BUILD_ROOT
 %{ruby_sitelibdir}/KDE/korundum4.rb
 %attr(755,root,root) %{_bindir}/rbkconfig_compiler4
 %attr(755,root,root) %{ruby_sitearchdir}/khtml.so
+%dir %{ruby_sitelibdir}/khtml
 %{ruby_sitelibdir}/khtml/khtml.rb
 %attr(755,root,root) %{ruby_sitearchdir}/ktexteditor.so
+%dir %{ruby_sitelibdir}/ktexteditor
 %{ruby_sitelibdir}/ktexteditor/ktexteditor.rb
 %attr(755,root,root) %{ruby_sitearchdir}/plasma_applet.so
+%dir %{ruby_sitelibdir}/KDE
 %{ruby_sitelibdir}/KDE/plasma.rb
 %attr(755,root,root) %{ruby_sitearchdir}/nepomuk.so
+%dir %{ruby_sitelibdir}/nepomuk
 %{ruby_sitelibdir}/nepomuk/nepomuk.rb
 %attr(755,root,root) %{ruby_sitearchdir}/solid.so
+%dir %{ruby_sitelibdir}/solid
 %{ruby_sitelibdir}/solid/solid.rb
 %attr(755,root,root) %{_libdir}/kde4/krossruby.so
 
