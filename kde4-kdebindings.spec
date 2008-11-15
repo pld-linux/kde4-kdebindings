@@ -223,11 +223,15 @@ rm -rf $RPM_BUILD_ROOT
 %{_prefix}/lib/mono/gac/nepomuk-dll
 %{_prefix}/lib/mono/gac/plasma-dll
 %{_prefix}/lib/mono/gac/soprano
+%dir %{_datadir}/apps/plasma_scriptengine_kimono
+%{_datadir}/apps/plasma_scriptengine_kimono/PlasmaScriptengineKimono.dll
+%{_datadir}/kde4/services/plasma-scriptengine-kimono-applet.desktop
+%{_datadir}/kde4/services/plasma-scriptengine-kimono-dataengine.desktop
 
 %files -n qyoto
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libqyoto.so
-%attr(755,root,root) %{_libdir}/libqyotoshared.so
+%attr(755,root,root) %{_libdir}/libqyotoshared.so.*.*.*
 %attr(755,root,root) %{_libdir}/libqtscript-sharp.so
 %attr(755,root,root) %{_libdir}/libqttest-sharp.so
 %attr(755,root,root) %{_libdir}/libqtuitools-sharp.so
@@ -248,6 +252,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/csrcc
 %attr(755,root,root) %{_bindir}/uics
+%attr(755,root,root) %{_libdir}/libqyotoshared.so
+%attr(755,root,root) %ghost %{_libdir}/libqyotoshared.so.?
 %{_includedir}/qyoto
 
 %files smoke-qt
@@ -312,6 +318,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/rbuic4
 %attr(755,root,root) %{_bindir}/rbrcc
 %attr(755,root,root) %{_libdir}/libqtruby4shared.so
+%attr(755,root,root) %{_libdir}/libqtruby4shared.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libqtruby4shared.so.?
 %attr(755,root,root) %{ruby_sitearchdir}/qtruby4.so
 %{ruby_sitelibdir}/Qt.rb
 %{ruby_sitelibdir}/Qt3.rb
@@ -325,15 +333,23 @@ rm -rf $RPM_BUILD_ROOT
 %{ruby_sitelibdir}/qtuitools/qtuitools.rb
 %attr(755,root,root) %{ruby_sitearchdir}/qtscript.so
 %{ruby_sitelibdir}/qtscript/qtscript.rb
+%attr(755,root,root) %{ruby_sitearchdir}/qttest.so
+%{ruby_sitelibdir}/qttest/qttest.rb
 
 %files ruby-kde
 %defattr(644,root,root,755)
-#%attr(755,root,root) %{ruby_sitearchdir}/phonon.so
-#%{ruby_sitelibdir}/phonon/phonon.rb
+%attr(755,root,root) %{ruby_sitearchdir}/akonadi.so
+%{ruby_sitelibdir}/akonadi/akonadi.rb
 %attr(755,root,root) %{ruby_sitearchdir}/soprano.so
 %{ruby_sitelibdir}/soprano/soprano.rb
 %{_desktopdir}/kde4/dbpedia_references.desktop
 %{_datadir}/apps/dbpedia_references/dbpedia_references.rb
+%dir %{_datadir}/apps/plasma_applet_ruby_clock
+%{_datadir}/apps/plasma_applet_ruby_clock/*.rb
+%dir %{_datadir}/apps/plasma_ruby_digital_clock
+%{_datadir}/apps/plasma_ruby_digital_clock/*.rb
+%{_datadir}/kde4/services/plasma-applet-ruby-analogclock.desktop
+%{_datadir}/kde4/services/plasma-ruby-digital-clock-default.desktop
 %attr(755,root,root) %{ruby_sitearchdir}/korundum4.so
 %attr(755,root,root) %{_libdir}/kde4/krubypluginfactory.so
 %attr(755,root,root) %{_bindir}/krubyapplication
@@ -343,12 +359,13 @@ rm -rf $RPM_BUILD_ROOT
 %{ruby_sitelibdir}/khtml/khtml.rb
 %attr(755,root,root) %{ruby_sitearchdir}/ktexteditor.so
 %{ruby_sitelibdir}/ktexteditor/ktexteditor.rb
+%attr(755,root,root) %{ruby_sitearchdir}/plasma_applet.so
+%{ruby_sitelibdir}/KDE/plasma.rb
 %attr(755,root,root) %{ruby_sitearchdir}/nepomuk.so
 %{ruby_sitelibdir}/nepomuk/nepomuk.rb
 %attr(755,root,root) %{ruby_sitearchdir}/solid.so
 %{ruby_sitelibdir}/solid/solid.rb
 %attr(755,root,root) %{_libdir}/kde4/krossruby.so
-%attr(755,root,root) %{_libdir}/kde4/krosspython.so
 
 %files ruby-devel
 %defattr(644,root,root,755)
@@ -356,6 +373,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n python-PyKDE4
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/kde4/kpythonpluginfactory.so
+%attr(755,root,root) %{_libdir}/kde4/krosspython.so
 %dir %{py_sitedir}/PyKDE4
 %{py_sitedir}/PyKDE4/kdecore.so
 %{py_sitedir}/PyKDE4/solid.so
