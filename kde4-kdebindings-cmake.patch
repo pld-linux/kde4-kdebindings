@@ -1,0 +1,144 @@
+--- trunk/KDE/kdebindings/csharp/khtml/CMakeLists.txt	2008/11/12 20:20:34	883387
++++ trunk/KDE/kdebindings/csharp/khtml/CMakeLists.txt	2008/11/12 20:23:17	883388
+@@ -22,8 +22,8 @@
+ TARGET_LINK_LIBRARIES(khtml-sharp smokeqt smokekde smokekhtml qyotoshared ${KHTML_LIBS})
+ 
+ SET(CS_FLAGS -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll -warn:0 -keyfile:${KEYFILE})
+-ADD_CS_LIBRARY(khtml "${SRC_CS}" ALL)
+-ADD_DEPENDENCIES(khtml khtml-sharp kde-dotnet)
++ADD_CS_LIBRARY(khtml-dll "${SRC_CS}" ALL)
++ADD_DEPENDENCIES(khtml-dll khtml-sharp kde-dotnet)
+ 
+ INSTALL(TARGETS khtml-sharp LIBRARY DESTINATION ${LIB_INSTALL_DIR})
+-INSTALL_GAC(khtml)
++INSTALL_GAC(khtml-dll)
+--- trunk/KDE/kdebindings/csharp/nepomuk/CMakeLists.txt	2008/11/12 20:20:34	883387
++++ trunk/KDE/kdebindings/csharp/nepomuk/CMakeLists.txt	2008/11/12 20:23:17	883388
+@@ -21,8 +21,8 @@
+ TARGET_LINK_LIBRARIES(nepomuk-sharp smokeqt smokenepomuk qyotoshared ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY})
+ 
+ SET(CS_FLAGS -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/soprano.dll -warn:0 -keyfile:${KEYFILE})
+-ADD_CS_LIBRARY(nepomuk "${SRC_CS}" ALL)
+-ADD_DEPENDENCIES(nepomuk qt-dotnet nepomuk-sharp smokenepomuk)
++ADD_CS_LIBRARY(nepomuk-dll "${SRC_CS}" ALL)
++ADD_DEPENDENCIES(nepomuk-dll qt-dotnet nepomuk-sharp smokenepomuk)
+ 
+ INSTALL(TARGETS nepomuk-sharp LIBRARY DESTINATION ${LIB_INSTALL_DIR})
+-INSTALL_GAC(nepomuk)
++INSTALL_GAC(nepomuk-dll)
+--- trunk/KDE/kdebindings/csharp/plasma/CMakeLists.txt	2008/11/12 20:20:34	883387
++++ trunk/KDE/kdebindings/csharp/plasma/CMakeLists.txt	2008/11/12 20:23:17	883388
+@@ -29,15 +29,15 @@
+ TARGET_LINK_LIBRARIES(plasma-sharp smokeqt smokekde smokeplasma qyotoshared ${KDE4_PLASMA_LIBS})
+ 
+ SET(CS_FLAGS -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/qtwebkit.dll -r:${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll -warn:0 -keyfile:${KEYFILE})
+-ADD_CS_LIBRARY(plasma "${SRC_CS}" ALL)
+-ADD_DEPENDENCIES(plasma qtwebkit kde-dotnet)
++ADD_CS_LIBRARY(plasma-dll "${SRC_CS}" ALL)
++ADD_DEPENDENCIES(plasma-dll qtwebkit kde-dotnet)
+ 
+ SET(CS_FLAGS -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/plasma.dll -warn:0 -keyfile:${KEYFILE})
+ ADD_CS_LIBRARY(PlasmaScriptengineKimono "${SRC_PLASMASCRIPTENGINEKIMONO}" ALL)
+ ADD_DEPENDENCIES(PlasmaScriptengineKimono kde-dotnet plasma)
+ 
+ INSTALL(TARGETS plasma-sharp LIBRARY DESTINATION ${LIB_INSTALL_DIR})
+-INSTALL_GAC(plasma)
++INSTALL_GAC(plasma-dll)
+ 
+ install(FILES ${LIBRARY_OUTPUT_PATH}/PlasmaScriptengineKimono.dll DESTINATION ${DATA_INSTALL_DIR}/plasma_scriptengine_kimono)
+ 
+--- trunk/KDE/kdebindings/csharp/kimono/tutorials/p4/CMakeLists.txt	2008/11/15 14:08:44	884593
++++ trunk/KDE/kdebindings/csharp/kimono/tutorials/p4/CMakeLists.txt	2008/11/15 14:09:29	884594
+@@ -1,4 +1,4 @@
+ SET(SRC_P4 ${CMAKE_CURRENT_SOURCE_DIR}/p4.cs)
+ SET(CS_FLAGS -warn:0 -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/khtml.dll)
+ ADD_CS_EXECUTABLE(p4 ${SRC_P4} ALL)
+-ADD_DEPENDENCIES(p4 khtml)
++ADD_DEPENDENCIES(p4 khtml-dll)
+--- trunk/KDE/kdebindings/csharp/plasma/CMakeLists.txt	2008/11/15 14:08:44	884593
++++ trunk/KDE/kdebindings/csharp/plasma/CMakeLists.txt	2008/11/15 14:09:29	884594
+@@ -32,9 +32,9 @@
+ ADD_CS_LIBRARY(plasma-dll "${SRC_CS}" ALL)
+ ADD_DEPENDENCIES(plasma-dll qtwebkit kde-dotnet)
+ 
+-SET(CS_FLAGS -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/plasma.dll -warn:0 -keyfile:${KEYFILE})
++SET(CS_FLAGS -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/plasma-dll.dll -warn:0 -keyfile:${KEYFILE})
+ ADD_CS_LIBRARY(PlasmaScriptengineKimono "${SRC_PLASMASCRIPTENGINEKIMONO}" ALL)
+-ADD_DEPENDENCIES(PlasmaScriptengineKimono kde-dotnet plasma)
++ADD_DEPENDENCIES(PlasmaScriptengineKimono kde-dotnet plasma-dll)
+ 
+ INSTALL(TARGETS plasma-sharp LIBRARY DESTINATION ${LIB_INSTALL_DIR})
+ INSTALL_GAC(plasma-dll)
+--- trunk/KDE/kdebindings/csharp/kimono/tutorials/p4/CMakeLists.txt	2008/11/15 14:22:18	884599
++++ trunk/KDE/kdebindings/csharp/kimono/tutorials/p4/CMakeLists.txt	2008/11/15 14:22:21	884600
+@@ -1,4 +1,4 @@
+ SET(SRC_P4 ${CMAKE_CURRENT_SOURCE_DIR}/p4.cs)
+-SET(CS_FLAGS -warn:0 -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/khtml.dll)
++SET(CS_FLAGS -warn:0 -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/khtml-dll.dll)
+ ADD_CS_EXECUTABLE(p4 ${SRC_P4} ALL)
+ ADD_DEPENDENCIES(p4 khtml-dll)
+--- trunk/KDE/kdebindings/csharp/kimono/tutorials/p5/CMakeLists.txt	2008/11/15 14:22:18	884599
++++ trunk/KDE/kdebindings/csharp/kimono/tutorials/p5/CMakeLists.txt	2008/11/15 14:22:21	884600
+@@ -1,3 +1,3 @@
+ SET(SRC_P5 ${CMAKE_CURRENT_SOURCE_DIR}/p5.cs)
+-SET(CS_FLAGS -warn:0 -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/khtml.dll)
++SET(CS_FLAGS -warn:0 -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/khtml-dll.dll)
+ ADD_CS_EXECUTABLE(p5 ${SRC_P5} ALL)
+--- trunk/KDE/kdebindings/csharp/kimono/tutorials/p6/CMakeLists.txt	2008/11/15 14:22:18	884599
++++ trunk/KDE/kdebindings/csharp/kimono/tutorials/p6/CMakeLists.txt	2008/11/15 14:22:21	884600
+@@ -1,3 +1,3 @@
+ SET(SRC_P6 ${CMAKE_CURRENT_SOURCE_DIR}/p6.cs)
+-SET(CS_FLAGS -warn:0 -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/khtml.dll)
++SET(CS_FLAGS -warn:0 -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/khtml-dll.dll)
+ ADD_CS_EXECUTABLE(p6 ${SRC_P6} ALL)
+--- trunk/KDE/kdebindings/csharp/kimono/tutorials/p7/CMakeLists.txt	2008/11/15 14:22:18	884599
++++ trunk/KDE/kdebindings/csharp/kimono/tutorials/p7/CMakeLists.txt	2008/11/15 14:22:21	884600
+@@ -1,3 +1,3 @@
+ SET(SRC_P7 ${CMAKE_CURRENT_SOURCE_DIR}/p7.cs)
+-SET(CS_FLAGS -warn:0 -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/khtml.dll)
++SET(CS_FLAGS -warn:0 -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/khtml-dll.dll)
+ ADD_CS_EXECUTABLE(p7 ${SRC_P7} ALL)
+--- trunk/KDE/kdebindings/csharp/kimono/tutorials/p8/CMakeLists.txt	2008/11/15 14:22:18	884599
++++ trunk/KDE/kdebindings/csharp/kimono/tutorials/p8/CMakeLists.txt	2008/11/15 14:22:21	884600
+@@ -1,3 +1,3 @@
+ SET(SRC_P8 ${CMAKE_CURRENT_SOURCE_DIR}/p8.cs)
+-SET(CS_FLAGS -warn:0 -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/khtml.dll)
++SET(CS_FLAGS -warn:0 -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/khtml-dll.dll)
+ ADD_CS_EXECUTABLE(p8 ${SRC_P8} ALL)
+--- trunk/KDE/kdebindings/csharp/kimono/tutorials/p9/CMakeLists.txt	2008/11/15 14:22:18	884599
++++ trunk/KDE/kdebindings/csharp/kimono/tutorials/p9/CMakeLists.txt	2008/11/15 14:22:21	884600
+@@ -1,3 +1,3 @@
+ SET(SRC_P9 ${CMAKE_CURRENT_SOURCE_DIR}/p9.cs)
+-SET(CS_FLAGS -warn:0 -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/khtml.dll)
++SET(CS_FLAGS -warn:0 -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll -r:${LIBRARY_OUTPUT_PATH}/khtml-dll.dll)
+ ADD_CS_EXECUTABLE(p9 ${SRC_P9} ALL)
+--- trunk/KDE/kdebindings/csharp/plasma/examples/applets/analog-clock/CMakeLists.txt	2008/11/15 14:22:18	884599
++++ trunk/KDE/kdebindings/csharp/plasma/examples/applets/analog-clock/CMakeLists.txt	2008/11/15 14:22:21	884600
+@@ -6,7 +6,7 @@
+ 
+ set(SRC_ANALOGCLOCK clock.cs ${CMAKE_CURRENT_BINARY_DIR}/ui_clockconfig.cs)
+ 
+-set(CS_FLAGS -warn:0 "-r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll,${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll,${LIBRARY_OUTPUT_PATH}/plasma.dll,${LIBRARY_OUTPUT_PATH}/plasmaclock.dll")
++set(CS_FLAGS -warn:0 "-r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll,${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll,${LIBRARY_OUTPUT_PATH}/plasma-dll.dll,${LIBRARY_OUTPUT_PATH}/plasmaclock.dll")
+ add_cs_library(analog-clock "${SRC_ANALOGCLOCK}" ALL)
+ 
+ add_dependencies(analog-clock plasma plasmaclock)
+--- trunk/KDE/kdebindings/csharp/plasma/examples/applets/plasmaclock/CMakeLists.txt	2008/11/15 14:22:18	884599
++++ trunk/KDE/kdebindings/csharp/plasma/examples/applets/plasmaclock/CMakeLists.txt	2008/11/15 14:22:21	884600
+@@ -8,5 +8,5 @@
+ 
+ set(SRC_PLASMACLOCK clockapplet.cs ${CMAKE_CURRENT_BINARY_DIR}/ui_timezonesconfig.cs ${CMAKE_CURRENT_BINARY_DIR}/calendar.cs)
+ 
+-set(CS_FLAGS -warn:0 "-r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll,${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll,${LIBRARY_OUTPUT_PATH}/plasma.dll")
++set(CS_FLAGS -warn:0 "-r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll,${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll,${LIBRARY_OUTPUT_PATH}/plasma-dll.dll")
+ add_cs_library(plasmaclock "${SRC_PLASMACLOCK}" ALL)
+--- trunk/KDE/kdebindings/csharp/plasma/examples/applets/tiger/contents/code/CMakeLists.txt	2008/11/15 14:22:18	884599
++++ trunk/KDE/kdebindings/csharp/plasma/examples/applets/tiger/contents/code/CMakeLists.txt	2008/11/15 14:22:21	884600
+@@ -1,6 +1,6 @@
+ SET(SRC_TIGER ${CMAKE_CURRENT_SOURCE_DIR}/tiger.cs)
+ SET(CS_FLAGS -warn:0 -r:${LIBRARY_OUTPUT_PATH}/qt-dotnet.dll 
+     -r:${LIBRARY_OUTPUT_PATH}/kde-dotnet.dll
+-    -r:${LIBRARY_OUTPUT_PATH}/plasma.dll -target:library -target:library )
++    -r:${LIBRARY_OUTPUT_PATH}/plasma-dll.dll -target:library -target:library )
+ ADD_CS_EXECUTABLE(main ${SRC_TIGER} ALL)
+ ADD_DEPENDENCIES(main kde-dotnet plasma)
