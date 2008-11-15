@@ -1,21 +1,27 @@
-%define		_state		stable
+%define		_state		unstable
 %define		orgname		kdebindings
+%define		qtver		4.4.3
+
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.1.0
+Version:	4.1.73
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	9c7ee50816ac6e0d5d2ea2f2968ac94d
-BuildRequires:	QtGui-devel >= 4.4.0
+# Source0-md5:	683104c4ddcd7f183b466053c6e1f901
+Patch0:		%{name}-cmake.patch
+BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kde4-kdepimlibs-devel >= %{version}
+BuildRequires:	qscintilla2-devel
 BuildRequires:	mono-csharp
-BuildRequires:	python-PyQt4-devel >= 4.4.2
-BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	monodoc
+BuildRequires:	python-PyQt4-devel >= 4.4.3
+BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	ruby-devel
+BuildRequires:	ruby-qt4-qtruby
 BuildRequires:	python-sip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -161,6 +167,7 @@ pliki nagłówkowe dla qyoto.
 
 %prep
 %setup -q -n %{orgname}-%{version}
+%patch0 -p3
 
 %build
 install -d build
@@ -188,44 +195,54 @@ mv $RPM_BUILD_ROOT%{_datadir}/apps/pykde4/examples/* $RPM_BUILD_ROOT%{_examplesd
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}/PyKDE4
 %py_postclean
 
-%find_lang pykde4 --with-kde
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files kimono
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/kde4/kimonopluginfactory.so
+%attr(755,root,root) %{_libdir}/libakonadi-sharp.so
 %attr(755,root,root) %{_libdir}/libkhtml-sharp.so
-%attr(755,root,root) %{_libdir}/libnepomuk-sharp.so
-%attr(755,root,root) %{_libdir}/libsoprano-sharp.so
 %attr(755,root,root) %{_libdir}/libkimono.so
-%dir %{_libdir}/mono
-%{_libdir}/mono/2.0/kde-dotnet.dll
-%{_libdir}/mono/2.0/khtml.dll
-%{_libdir}/mono/2.0/soprano.dll
-%{_libdir}/mono/2.0/nepomuk.dll
-%{_libdir}/mono/gac/kde-dotnet
-%{_libdir}/mono/gac/khtml
-%{_libdir}/mono/gac/nepomuk
-%{_libdir}/mono/gac/soprano
+%attr(755,root,root) %{_libdir}/libktexteditor-sharp.so
+%attr(755,root,root) %{_libdir}/libnepomuk-sharp.so
+%attr(755,root,root) %{_libdir}/libplasma-sharp.so
+%attr(755,root,root) %{_libdir}/libsoprano-sharp.so
+%dir %{_prefix}/lib/mono
+%{_prefix}/lib/mono/2.0/akonadi.dll
+%{_prefix}/lib/mono/2.0/kde-dotnet.dll
+%{_prefix}/lib/mono/2.0/khtml-dll.dll
+%{_prefix}/lib/mono/2.0/ktexteditor-dotnet.dll
+%{_prefix}/lib/mono/2.0/nepomuk-dll.dll
+%{_prefix}/lib/mono/2.0/plasma-dll.dll
+%{_prefix}/lib/mono/2.0/soprano.dll
+%{_prefix}/lib/mono/gac/akonadi
+%{_prefix}/lib/mono/gac/kde-dotnet
+%{_prefix}/lib/mono/gac/khtml-dll
+%{_prefix}/lib/mono/gac/ktexteditor-dotnet
+%{_prefix}/lib/mono/gac/nepomuk-dll
+%{_prefix}/lib/mono/gac/plasma-dll
+%{_prefix}/lib/mono/gac/soprano
 
 %files -n qyoto
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libqyoto.so
 %attr(755,root,root) %{_libdir}/libqyotoshared.so
 %attr(755,root,root) %{_libdir}/libqtscript-sharp.so
+%attr(755,root,root) %{_libdir}/libqttest-sharp.so
 %attr(755,root,root) %{_libdir}/libqtuitools-sharp.so
 %attr(755,root,root) %{_libdir}/libqtwebkit-sharp.so
-%dir %{_libdir}/mono/gac
-%{_libdir}/mono/2.0/qt-dotnet.dll
-%{_libdir}/mono/2.0/qtscript.dll
-%{_libdir}/mono/2.0/qtuitools.dll
-%{_libdir}/mono/2.0/qtwebkit.dll
-%{_libdir}/mono/gac/qt-dotnet
-%{_libdir}/mono/gac/qtscript
-%{_libdir}/mono/gac/qtuitools
-%{_libdir}/mono/gac/qtwebkit
+%dir %{_prefix}/lib/mono/gac
+%{_prefix}/lib/mono/2.0/qt-dotnet.dll
+%{_prefix}/lib/mono/2.0/qtscript.dll
+%{_prefix}/lib/mono/2.0/qttest.dll
+%{_prefix}/lib/mono/2.0/qtuitools.dll
+%{_prefix}/lib/mono/2.0/qtwebkit.dll
+%{_prefix}/lib/mono/gac/qt-dotnet
+%{_prefix}/lib/mono/gac/qtscript
+%{_prefix}/lib/mono/gac/qttest
+%{_prefix}/lib/mono/gac/qtuitools
+%{_prefix}/lib/mono/gac/qtwebkit
 
 %files -n qyoto-devel
 %defattr(644,root,root,755)
@@ -243,9 +260,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libsmokeqtscript.so.?
 %attr(755,root,root) %{_libdir}/libsmokeqtuitools.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmokeqtuitools.so.?
+%attr(755,root,root) %{_libdir}/libsmokeqttest.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokeqttest.so.?
 
 %files smoke-kde
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libsmokeakonadi.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokeakonadi.so.?
 %attr(755,root,root) %{_libdir}/libsmokekde.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmokekde.so.?
 %attr(755,root,root) %{_libdir}/libsmokekhtml.so.*.*.*
@@ -255,6 +276,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libsmokenepomuk.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmokenepomuk.so.?
 %attr(755,root,root) %{_libdir}/libsmokephonon.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokeplasma.so.?
+%attr(755,root,root) %{_libdir}/libsmokeplasma.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmokephonon.so.?
 %attr(755,root,root) %{_libdir}/libsmokesolid.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmokesolid.so.?
@@ -265,15 +288,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %files smoke-devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libsmokeakonadi.so
 %attr(755,root,root) %{_libdir}/libsmokeqt.so
 %attr(755,root,root) %{_libdir}/libsmokeqtwebkit.so
 %attr(755,root,root) %{_libdir}/libsmokeqtscript.so
 %attr(755,root,root) %{_libdir}/libsmokeqtuitools.so
+%attr(755,root,root) %{_libdir}/libsmokeqttest.so
 %attr(755,root,root) %{_libdir}/libsmokekde.so
 %attr(755,root,root) %{_libdir}/libsmokekhtml.so
 %attr(755,root,root) %{_libdir}/libsmokektexteditor.so
 %attr(755,root,root) %{_libdir}/libsmokenepomuk.so
 %attr(755,root,root) %{_libdir}/libsmokephonon.so
+%attr(755,root,root) %{_libdir}/libsmokeplasma.so
 %attr(755,root,root) %{_libdir}/libsmokesolid.so
 %attr(755,root,root) %{_libdir}/libsmokesoprano.so
 %attr(755,root,root) %{_libdir}/libsmokeqsci.so
@@ -302,8 +328,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files ruby-kde
 %defattr(644,root,root,755)
-%attr(755,root,root) %{ruby_sitearchdir}/phonon.so
-%{ruby_sitelibdir}/phonon/phonon.rb
+#%attr(755,root,root) %{ruby_sitearchdir}/phonon.so
+#%{ruby_sitelibdir}/phonon/phonon.rb
 %attr(755,root,root) %{ruby_sitearchdir}/soprano.so
 %{ruby_sitelibdir}/soprano/soprano.rb
 %{_desktopdir}/kde4/dbpedia_references.desktop
@@ -328,7 +354,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_includedir}/qtruby/*.h
 
-%files -n python-PyKDE4 -f pykde4.lang
+%files -n python-PyKDE4
 %defattr(644,root,root,755)
 %dir %{py_sitedir}/PyKDE4
 %{py_sitedir}/PyKDE4/kdecore.so
@@ -342,6 +368,7 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitedir}/PyKDE4/knewstuff.so
 %{py_sitedir}/PyKDE4/dnssd.so
 %{py_sitedir}/PyKDE4/phonon.so
+%{py_sitedir}/PyKDE4/plasma.so
 %{py_sitedir}/PyKDE4/soprano.so
 %{py_sitedir}/PyKDE4/nepomuk.so
 %{py_sitedir}/PyKDE4/akonadi.so
@@ -367,6 +394,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/sip/PyKDE4/soprano
 %{_datadir}/sip/PyKDE4/kdecore
 %{_datadir}/sip/PyKDE4/phonon
+%{_datadir}/sip/PyKDE4/plasma
 %{_datadir}/sip/PyKDE4/kdeui
 %{_datadir}/sip/PyKDE4/kutils
 %{_datadir}/sip/PyKDE4/kparts
