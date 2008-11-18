@@ -198,6 +198,21 @@ mv $RPM_BUILD_ROOT%{_datadir}/apps/pykde4/examples/* $RPM_BUILD_ROOT%{_examplesd
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	kimono -p /sbin/ldconfig
+%postun	kimono -p /sbin/ldconfig
+
+%post	qyoto -p /sbin/ldconfig
+%postun	qyoto -p /sbin/ldconfig
+
+%post	smoke-qt -p /sbin/ldconfig
+%postun	smoke-qt -p /sbin/ldconfig
+
+%post	smoke-kde -p /sbin/ldconfig
+%postun	smoke-kde -p /sbin/ldconfig
+
+%post	ruby-qt -p /sbin/ldconfig
+%postun	ruby-qt -p /sbin/ldconfig
+
 %files kimono
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/kde4/kimonopluginfactory.so
