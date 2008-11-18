@@ -201,8 +201,8 @@ rm -rf $RPM_BUILD_ROOT
 %post	kimono -p /sbin/ldconfig
 %postun	kimono -p /sbin/ldconfig
 
-%post	qyoto -p /sbin/ldconfig
-%postun	qyoto -p /sbin/ldconfig
+%post	-n qyoto -p /sbin/ldconfig
+%postun	-n qyoto -p /sbin/ldconfig
 
 %post	smoke-qt -p /sbin/ldconfig
 %postun	smoke-qt -p /sbin/ldconfig
