@@ -13,6 +13,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version
 # Source0-md5:	683104c4ddcd7f183b466053c6e1f901
 Patch0:		%{name}-cmake.patch
 BuildRequires:	QtGui-devel >= %{qtver}
+BuildRequires:	cmake >= 2.6.2
 BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kde4-kdepimlibs-devel >= %{version}
 BuildRequires:	qscintilla2-devel
