@@ -246,6 +246,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n qyoto
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libqyoto.so
+%attr(755,root,root) %ghost %{_libdir}/libqyotoshared.so.?
 %attr(755,root,root) %{_libdir}/libqyotoshared.so.*.*.*
 %attr(755,root,root) %{_libdir}/libqtscript-sharp.so
 %attr(755,root,root) %{_libdir}/libqttest-sharp.so
@@ -268,7 +269,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/csrcc
 %attr(755,root,root) %{_bindir}/uics
 %attr(755,root,root) %{_libdir}/libqyotoshared.so
-%attr(755,root,root) %ghost %{_libdir}/libqyotoshared.so.?
 %{_includedir}/qyoto
 
 %files smoke-qt
