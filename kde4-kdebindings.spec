@@ -22,7 +22,7 @@ BuildRequires:	monodoc
 BuildRequires:	python-PyQt4-devel >= 4.4.3
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	ruby-devel
-BuildRequires:	ruby-qt4-qtruby
+BuildRequires:	ruby-qt4-qtruby-devel
 BuildRequires:	python-sip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
