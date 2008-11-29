@@ -169,7 +169,7 @@ pliki nagłówkowe dla qyoto.
 
 %prep
 %setup -q -n %{orgname}-%{version}
-#%patch0 -p3
+%patch0 -p1
 
 %build
 install -d build
