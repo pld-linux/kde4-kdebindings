@@ -5,12 +5,12 @@
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.1.80
-Release:	1
+Version:	4.1.81
+Release:	0.5
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	4e690a2686d8c10f8a15eb2b4de2f729
+# Source0-md5:	ef4c2a59f6cba08502d1bda9e140184d
 Patch0:		%{name}-cmake.patch
 BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	cmake >= 2.6.2
@@ -24,6 +24,7 @@ BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	ruby-devel
 BuildRequires:	ruby-qt4-qtruby-devel
 BuildRequires:	python-sip
+BuildConflicts:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -168,7 +169,7 @@ pliki nagłówkowe dla qyoto.
 
 %prep
 %setup -q -n %{orgname}-%{version}
-%patch0 -p3
+#%patch0 -p3
 
 %build
 install -d build
