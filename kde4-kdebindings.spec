@@ -19,11 +19,11 @@ BuildRequires:	kde4-kdepimlibs-devel >= %{version}
 BuildRequires:	qscintilla2-devel
 BuildRequires:	mono-csharp
 BuildRequires:	monodoc
-BuildRequires:	python-PyQt4-devel >= 4.4.3
+BuildRequires:	python-PyQt4-devel >= 4.4.4
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	ruby-devel
 BuildRequires:	ruby-qt4-qtruby-devel
-BuildRequires:	python-sip
+BuildRequires:	python-sip >= 4.7.8
 BuildConflicts:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
