@@ -9,3 +9,21 @@
      ${KDE4_KDECORE_LIBS}
      smokesoprano
      smokekde
+--- kdebindings-4.1.81/python/pykde4/sip/kio/kdirlister.sip.orig	2008-07-08 11:27:46.000000000 +0200
++++ kdebindings-4.1.81/python/pykde4/sip/kio/kdirlister.sip	2008-11-30 00:49:45.000000000 +0100
+@@ -102,15 +102,6 @@
+ 
+ protected:
+ 
+-    enum Changes
+-    {
+-        NONE,
+-        NAME_FILTER,
+-        MIME_FILTER,
+-        DOT_FILES,
+-        DIR_ONLY_MODE
+-    };
+-
+     virtual bool            matchesFilter (const KFileItem&) const;
+     virtual bool            matchesMimeFilter (const KFileItem&) const;
+     virtual bool            doNameFilter (const QString& name, const QList<QRegExp>& filters) const;
