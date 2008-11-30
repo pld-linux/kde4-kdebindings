@@ -6,7 +6,7 @@ Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
 Version:	4.1.81
-Release:	0.5
+Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
@@ -389,9 +389,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{ruby_sitearchdir}/plasma_applet.so
 %dir %{ruby_sitelibdir}/KDE
 %{ruby_sitelibdir}/KDE/plasma.rb
-%attr(755,root,root) %{ruby_sitearchdir}/nepomuk.so
-%dir %{ruby_sitelibdir}/nepomuk
-%{ruby_sitelibdir}/nepomuk/nepomuk.rb
 %attr(755,root,root) %{ruby_sitearchdir}/solid.so
 %dir %{ruby_sitelibdir}/solid
 %{ruby_sitelibdir}/solid/solid.rb
