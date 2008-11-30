@@ -1,6 +1,6 @@
 %define		_state		unstable
 %define		orgname		kdebindings
-%define		qtver		4.4.3
+%define		qtver		4.4.4
 
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
@@ -19,7 +19,7 @@ BuildRequires:	kde4-kdepimlibs-devel >= %{version}
 BuildRequires:	qscintilla2-devel
 BuildRequires:	mono-csharp
 BuildRequires:	monodoc
-BuildRequires:	python-PyQt4-devel >= 4.4.4
+BuildRequires:	python-PyQt4-devel >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	ruby-devel
 BuildRequires:	ruby-qt4-qtruby-devel
@@ -160,6 +160,7 @@ Dowiązania C# Mono dla Qt4.
 Summary:	qyoto header files
 Summary(pl.UTF-8):	pliki nagłówkowe dla qyoto
 Group:		X11/Development/Libraries
+Requires:	qyoto = %{version}-%{release}
 
 %description -n qyoto-devel
 qyoto header files.
@@ -225,7 +226,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libnepomuk-sharp.so
 %attr(755,root,root) %{_libdir}/libplasma-sharp.so
 %attr(755,root,root) %{_libdir}/libsoprano-sharp.so
-%dir %{_prefix}/lib/mono
 %{_prefix}/lib/mono/2.0/akonadi.dll
 %{_prefix}/lib/mono/2.0/kde-dotnet.dll
 %{_prefix}/lib/mono/2.0/khtml-dll.dll
@@ -254,12 +254,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libqttest-sharp.so
 %attr(755,root,root) %{_libdir}/libqtuitools-sharp.so
 %attr(755,root,root) %{_libdir}/libqtwebkit-sharp.so
-%dir %{_prefix}/lib/mono/gac
+%dir %{_prefix}/lib/mono
+%dir %{_prefix}/lib/mono/2.0
 %{_prefix}/lib/mono/2.0/qt-dotnet.dll
 %{_prefix}/lib/mono/2.0/qtscript.dll
 %{_prefix}/lib/mono/2.0/qttest.dll
 %{_prefix}/lib/mono/2.0/qtuitools.dll
 %{_prefix}/lib/mono/2.0/qtwebkit.dll
+%dir %{_prefix}/lib/mono/gac
 %{_prefix}/lib/mono/gac/qt-dotnet
 %{_prefix}/lib/mono/gac/qtscript
 %{_prefix}/lib/mono/gac/qttest
@@ -271,6 +273,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/csrcc
 %attr(755,root,root) %{_bindir}/uics
 %attr(755,root,root) %{_libdir}/libqyotoshared.so
+%dir %{_includedir}/qyoto
 %{_includedir}/qyoto
 
 %files smoke-qt
@@ -326,6 +329,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libsmokesolid.so
 %attr(755,root,root) %{_libdir}/libsmokesoprano.so
 %attr(755,root,root) %{_libdir}/libsmokeqsci.so
+%dir %{_includedir}/smoke
 %{_includedir}/smoke/*.h
 %{_includedir}/smoke.h
 
@@ -396,6 +400,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files ruby-devel
 %defattr(644,root,root,755)
+%dir %{_includedir}/qtruby
 %{_includedir}/qtruby/*.h
 
 %files -n python-PyKDE4
