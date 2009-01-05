@@ -1,30 +1,34 @@
+# TODO
+# - -- cmake package FindKDevPlatform.cmake was not found. The package KDevPlatform is needed to compile all part of this program.
+# Conditional build:
+%bcond_without	dotnet	# build without dotnet bindings
+
 %define		_state		unstable
 %define		orgname		kdebindings
 %define		qtver		4.4.3
-
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.1.81
+Version:	4.1.85
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	ef4c2a59f6cba08502d1bda9e140184d
+# Source0-md5:	31b04d423ebbce5faf7eaa2f92409083
 Patch0:		%{name}-cmake.patch
 BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	cmake >= 2.6.2
 BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kde4-kdepimlibs-devel >= %{version}
-BuildRequires:	qscintilla2-devel
-BuildRequires:	mono-csharp
-BuildRequires:	monodoc
+%{?with_dotnet:BuildRequires:	mono-csharp}
+%{?with_dotnet:BuildRequires:	monodoc}
 BuildRequires:	python-PyQt4-devel >= %{qtver}
+BuildRequires:	python-sip >= 4.7.8
+BuildRequires:	qscintilla2-devel
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	ruby-devel
-BuildRequires:	ruby-qt4-qtruby-devel
-BuildRequires:	python-sip >= 4.7.8
-BuildConflicts:	qt-devel
+BuildRequires:	ruby-qt4-devel
+#BuildConflicts:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -170,7 +174,7 @@ pliki nagłówkowe dla qyoto.
 
 %prep
 %setup -q -n %{orgname}-%{version}
-%patch0 -p1
+#%patch0 -p1
 
 %build
 install -d build
@@ -273,7 +277,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/csrcc
 %attr(755,root,root) %{_bindir}/uics
 %attr(755,root,root) %{_libdir}/libqyotoshared.so
-%dir %{_includedir}/qyoto
 %{_includedir}/qyoto
 
 %files smoke-qt
@@ -301,10 +304,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libsmokektexteditor.so.?
 %attr(755,root,root) %{_libdir}/libsmokenepomuk.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmokenepomuk.so.?
-%attr(755,root,root) %{_libdir}/libsmokephonon.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libsmokeplasma.so.?
+#%attr(755,root,root) %{_libdir}/libsmokephonon.so.*.*.*
+#%attr(755,root,root) %ghost %{_libdir}/libsmokephonon.so.?
 %attr(755,root,root) %{_libdir}/libsmokeplasma.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libsmokephonon.so.?
+%attr(755,root,root) %ghost %{_libdir}/libsmokeplasma.so.?
 %attr(755,root,root) %{_libdir}/libsmokesolid.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmokesolid.so.?
 %attr(755,root,root) %{_libdir}/libsmokesoprano.so.*.*.*
@@ -324,7 +327,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libsmokekhtml.so
 %attr(755,root,root) %{_libdir}/libsmokektexteditor.so
 %attr(755,root,root) %{_libdir}/libsmokenepomuk.so
-%attr(755,root,root) %{_libdir}/libsmokephonon.so
+#%attr(755,root,root) %{_libdir}/libsmokephonon.so
 %attr(755,root,root) %{_libdir}/libsmokeplasma.so
 %attr(755,root,root) %{_libdir}/libsmokesolid.so
 %attr(755,root,root) %{_libdir}/libsmokesoprano.so
@@ -338,17 +341,20 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/rbqtapi
 %attr(755,root,root) %{_bindir}/rbuic4
 %attr(755,root,root) %{_bindir}/rbrcc
-%attr(755,root,root) %{_libdir}/libqtruby4shared.so
 %attr(755,root,root) %{_libdir}/libqtruby4shared.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libqtruby4shared.so.?
-%attr(755,root,root) %{ruby_sitearchdir}/qtruby4.so
+%attr(755,root,root) %ghost %{_libdir}/libqtruby4shared.so.2
+%attr(755,root,root) %{_libdir}/libsmokeokular.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokeokular.so.2
 %{ruby_sitelibdir}/Qt.rb
 %{ruby_sitelibdir}/Qt3.rb
 %{ruby_sitelibdir}/Qt4.rb
 %dir %{ruby_sitelibdir}/Qt
 %{ruby_sitelibdir}/Qt/qtruby4.rb
+%attr(755,root,root) %{ruby_sitearchdir}/qtruby4.so
 %{ruby_sitelibdir}/Qt/active_item_model.rb
 %{ruby_sitelibdir}/Qt/active_table_model.rb
+%attr(755,root,root) %{ruby_sitearchdir}/okular.so
+%{ruby_sitelibdir}/okular/okular.rb
 %attr(755,root,root) %{ruby_sitearchdir}/qtwebkit.so
 %dir %{ruby_sitelibdir}/qtwebkit
 %{ruby_sitelibdir}/qtwebkit/qtwebkit.rb
@@ -400,6 +406,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files ruby-devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libsmokeokular.so
+%attr(755,root,root) %{_libdir}/libqtruby4shared.so
 %dir %{_includedir}/qtruby
 %{_includedir}/qtruby/*.h
 
