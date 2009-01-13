@@ -9,12 +9,12 @@
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.1.85
+Version:	4.1.96
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	31b04d423ebbce5faf7eaa2f92409083
+# Source0-md5:	7669193f0ce227bd7e113aaedc131225
 Patch0:		%{name}-cmake.patch
 BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	cmake >= 2.6.2
@@ -22,6 +22,7 @@ BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kde4-kdepimlibs-devel >= %{version}
 %{?with_dotnet:BuildRequires:	mono-csharp}
 %{?with_dotnet:BuildRequires:	monodoc}
+BuildRequires:	phonon-devel >= 4.2.96
 BuildRequires:	python-PyQt4-devel >= %{qtver}
 BuildRequires:	python-sip >= 4.7.8
 BuildRequires:	qscintilla2-devel
