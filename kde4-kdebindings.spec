@@ -9,20 +9,19 @@
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.1.96
+Version:	4.2.0
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	7669193f0ce227bd7e113aaedc131225
-Patch0:		%{name}-cmake.patch
+# Source0-md5:	6eae8fd968da83fe65e592993e416adc
 BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	cmake >= 2.6.2
 BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kde4-kdepimlibs-devel >= %{version}
 %{?with_dotnet:BuildRequires:	mono-csharp}
 %{?with_dotnet:BuildRequires:	monodoc}
-BuildRequires:	phonon-devel >= 4.2.96
+BuildRequires:	phonon-devel >= 4.3.0
 BuildRequires:	python-PyQt4-devel >= %{qtver}
 BuildRequires:	python-sip >= 4.7.8
 BuildRequires:	qscintilla2-devel
@@ -380,12 +379,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde4/dbpedia_references.desktop
 %dir %{_datadir}/apps/dbpedia_references
 %{_datadir}/apps/dbpedia_references/dbpedia_references.rb
-%dir %{_datadir}/apps/plasma_applet_ruby_clock
-%{_datadir}/apps/plasma_applet_ruby_clock/*.rb
-%dir %{_datadir}/apps/plasma_ruby_digital_clock
-%{_datadir}/apps/plasma_ruby_digital_clock/*.rb
-%{_datadir}/kde4/services/plasma-applet-ruby-analogclock.desktop
-%{_datadir}/kde4/services/plasma-ruby-digital-clock-default.desktop
 %attr(755,root,root) %{ruby_sitearchdir}/korundum4.so
 %attr(755,root,root) %{_libdir}/kde4/krubypluginfactory.so
 %attr(755,root,root) %{_bindir}/krubyapplication
