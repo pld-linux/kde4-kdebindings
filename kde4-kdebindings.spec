@@ -9,12 +9,12 @@
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.2.0
-Release:	6
+Version:	4.2.1
+Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	6eae8fd968da83fe65e592993e416adc
+# Source0-md5:	8b81bc56e77404fd377af56224bd966f
 BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	automoc4 >= 0.9.88
 BuildRequires:	cmake >= 2.6.2
@@ -23,7 +23,7 @@ BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kde4-kdepimlibs-devel >= %{version}
 %{?with_dotnet:BuildRequires:	mono-csharp}
 %{?with_dotnet:BuildRequires:	monodoc}
-BuildRequires:	phonon-devel >= 4.3.0
+BuildRequires:	phonon-devel >= 4.3.1
 BuildRequires:	python-PyQt4-devel >= %{qtver}
 BuildRequires:	python-sip >= 4.7.8
 BuildRequires:	qscintilla2-devel
@@ -433,8 +433,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/sip/PyKDE4/glossary.html
 
 %dir %{_datadir}/apps/pykde4
-%{_datadir}/apps/pykde4/kde4.py
-%{_datadir}/apps/pykde4/kde4.pyc
+#%{_datadir}/apps/pykde4/kde4.py
+#%{_datadir}/apps/pykde4/kde4.pyc
 %{_datadir}/apps/pykde4/pykdeuic4.py
 %{_datadir}/apps/pykde4/pykdeuic4.pyc
 
