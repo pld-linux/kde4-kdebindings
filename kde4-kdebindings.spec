@@ -10,7 +10,7 @@ Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
 Version:	4.2.1
-Release:	4
+Release:	5
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
@@ -263,14 +263,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libqttest-sharp.so
 %attr(755,root,root) %{_libdir}/libqtuitools-sharp.so
 %attr(755,root,root) %{_libdir}/libqtwebkit-sharp.so
-%dir %{_prefix}/lib/mono
-%dir %{_prefix}/lib/mono/2.0
 %{_prefix}/lib/mono/2.0/qt-dotnet.dll
 %{_prefix}/lib/mono/2.0/qtscript.dll
 %{_prefix}/lib/mono/2.0/qttest.dll
 %{_prefix}/lib/mono/2.0/qtuitools.dll
 %{_prefix}/lib/mono/2.0/qtwebkit.dll
-%dir %{_prefix}/lib/mono/gac
 %{_prefix}/lib/mono/gac/qt-dotnet
 %{_prefix}/lib/mono/gac/qtscript
 %{_prefix}/lib/mono/gac/qttest
