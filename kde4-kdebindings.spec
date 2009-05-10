@@ -1,5 +1,4 @@
-# TODO
-# - -- cmake package FindKDevPlatform.cmake was not found. The package KDevPlatform is needed to compile all part of this program.
+#
 # Conditional build:
 %bcond_without	dotnet	# build without dotnet bindings
 
@@ -15,6 +14,7 @@ License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
 # Source0-md5:	1c0e2a30461fb64654d0cc4e104f4dde
+Patch0:	%{name}-csharp.patch
 BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	QtUiTools-devel >= %{qtver}
 BuildRequires:	QtWebKit-devel >= %{qtver}
@@ -23,6 +23,7 @@ BuildRequires:	cmake >= 2.6.3
 BuildRequires:	kde4-kdegraphics-devel >= %{version}
 BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kde4-kdepimlibs-devel >= %{version}
+BuildRequires:	kde4-kdevplatform-devel
 %{?with_dotnet:BuildRequires:	mono-csharp}
 %{?with_dotnet:BuildRequires:	monodoc}
 BuildRequires:	phonon-devel >= 4.3.1
@@ -178,7 +179,7 @@ pliki nagłówkowe dla qyoto.
 
 %prep
 %setup -q -n %{orgname}-%{version}
-#%patch0 -p1
+%patch0 -p1
 
 %build
 install -d build
