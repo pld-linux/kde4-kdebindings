@@ -2,19 +2,22 @@
 # Conditional build:
 %bcond_without	dotnet	# build without dotnet bindings
 
-%define		_state		stable
+%define		_state		unstable
 %define		orgname		kdebindings
 %define		qtver		4.5.0
+%define		svn		979380
+
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.2.3
-Release:	4
+Version:	4.2.91
+Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	1c0e2a30461fb64654d0cc4e104f4dde
-Patch0:	%{name}-csharp.patch
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}svn%{svn}.tar.bz2
+# Source0-md5:	b56daa55a6ace5c96744d8294c34faaa
+#Patch0:	%{name}-csharp.patch
 BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	QtUiTools-devel >= %{qtver}
 BuildRequires:	QtWebKit-devel >= %{qtver}
@@ -27,8 +30,9 @@ BuildRequires:	kde4-kdevplatform-devel
 %{?with_dotnet:BuildRequires:	mono-csharp}
 %{?with_dotnet:BuildRequires:	monodoc}
 BuildRequires:	phonon-devel >= 4.3.1
-BuildRequires:	python-PyQt4-devel >= 4.4.4
-BuildRequires:	python-sip >= 4.7.8
+BuildRequires:	polkit-qt-devel
+BuildRequires:	python-PyQt4-devel >= 4.5
+BuildRequires:	python-sip >= 4.8
 BuildRequires:	qscintilla2-devel
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	ruby-devel
@@ -178,8 +182,8 @@ qyoto header files.
 pliki nagłówkowe dla qyoto.
 
 %prep
-%setup -q -n %{orgname}-%{version}
-%patch0 -p1
+%setup -q -n %{orgname}-%{version}svn%{svn}
+#%patch0 -p1
 
 %build
 install -d build
@@ -203,7 +207,7 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/pykde4
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_htmldir=%{_kdedocdir}
 
-mv $RPM_BUILD_ROOT%{_datadir}/apps/pykde4/examples/* $RPM_BUILD_ROOT%{_examplesdir}/pykde4
+#mv $RPM_BUILD_ROOT%{_datadir}/apps/pykde4/examples/* $RPM_BUILD_ROOT%{_examplesdir}/pykde4
 %py_comp $RPM_BUILD_ROOT%{py_sitedir}/PyKDE4
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}/PyKDE4
 %py_postclean
