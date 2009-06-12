@@ -30,7 +30,8 @@ BuildRequires:	kde4-kdevplatform-devel
 %{?with_dotnet:BuildRequires:	mono-csharp}
 %{?with_dotnet:BuildRequires:	monodoc}
 BuildRequires:	phonon-devel >= 4.3.1
-BuildRequires:	polkit-qt-devel
+# PolicyKit-kde (qt)
+BuildRequires:	kde4-kdebase-workspace-devel
 BuildRequires:	python-PyQt4-devel >= 4.5
 BuildRequires:	python-sip >= 4.8
 BuildRequires:	qscintilla2-devel
@@ -207,7 +208,7 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/pykde4
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_htmldir=%{_kdedocdir}
 
-#mv $RPM_BUILD_ROOT%{_datadir}/apps/pykde4/examples/* $RPM_BUILD_ROOT%{_examplesdir}/pykde4
+mv $RPM_BUILD_ROOT%{_datadir}/apps/pykde4/examples/* $RPM_BUILD_ROOT%{_examplesdir}/pykde4
 %py_comp $RPM_BUILD_ROOT%{py_sitedir}/PyKDE4
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}/PyKDE4
 %py_postclean
@@ -268,23 +269,31 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libqttest-sharp.so
 %attr(755,root,root) %{_libdir}/libqtuitools-sharp.so
 %attr(755,root,root) %{_libdir}/libqtwebkit-sharp.so
+%attr(755,root,root) %{_libdir}/libqimageblitz-sharp.so
 %{_prefix}/lib/mono/2.0/qt-dotnet.dll
 %{_prefix}/lib/mono/2.0/qtscript.dll
 %{_prefix}/lib/mono/2.0/qttest.dll
 %{_prefix}/lib/mono/2.0/qtuitools.dll
 %{_prefix}/lib/mono/2.0/qtwebkit.dll
+%{_prefix}/lib/mono/2.0/qimageblitz.dll
 %{_prefix}/lib/mono/gac/qt-dotnet
 %{_prefix}/lib/mono/gac/qtscript
 %{_prefix}/lib/mono/gac/qttest
 %{_prefix}/lib/mono/gac/qtuitools
 %{_prefix}/lib/mono/gac/qtwebkit
-
+%{_prefix}/lib/mono/gac/qimageblitz
+      
 %files -n qyoto-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/csrcc
 %attr(755,root,root) %{_bindir}/uics
 %attr(755,root,root) %{_libdir}/libqyotoshared.so
 %{_includedir}/qyoto
+%{_pkgconfigdir}/qyoto.pc
+%{_pkgconfigdir}/qtscript-sharp.pc
+%{_pkgconfigdir}/qttest-sharp.pc
+%{_pkgconfigdir}/qtuitools-sharp.pc
+%{_pkgconfigdir}/qtwebkit-sharp.pc
 
 %files smoke-qt
 %defattr(644,root,root,755)
@@ -298,6 +307,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libsmokeqtuitools.so.?
 %attr(755,root,root) %{_libdir}/libsmokeqttest.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmokeqttest.so.?
+%attr(755,root,root) %{_libdir}/libsmokeqimageblitz.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokeqimageblitz.so.?
 
 %files smoke-kde
 %defattr(644,root,root,755)
@@ -339,6 +350,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libsmokesolid.so
 %attr(755,root,root) %{_libdir}/libsmokesoprano.so
 %attr(755,root,root) %{_libdir}/libsmokeqsci.so
+%attr(755,root,root) %{_libdir}/libsmokeqimageblitz.so
 %dir %{_includedir}/smoke
 %{_includedir}/smoke/*.h
 %{_includedir}/smoke.h
@@ -436,6 +448,7 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitedir}/PyKDE4/soprano.so
 %{py_sitedir}/PyKDE4/nepomuk.so
 %{py_sitedir}/PyKDE4/akonadi.so
+%{py_sitedir}/PyKDE4/polkitqt.so
 %{py_sitedir}/PyKDE4/__init__.py[co]
 %{py_sitedir}/PyKDE4/pykdeconfig.py[co]
 %{_datadir}/sip/PyKDE4/glossary.html
@@ -462,6 +475,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/sip/PyKDE4/kdeui
 %{_datadir}/sip/PyKDE4/kutils
 %{_datadir}/sip/PyKDE4/kparts
+%{_datadir}/sip/PyKDE4/polkitqt
 
 %files -n python-PyKDE4-examples
 %defattr(644,root,root,755)
