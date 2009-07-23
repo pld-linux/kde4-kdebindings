@@ -1,6 +1,8 @@
 #
 # Conditional build:
 %bcond_without	dotnet	# build without dotnet bindings
+%bcond_with	smoke	# build libsmokekde
+%bcond_with	ruby	# build ruby bindings
 
 %define		_state		unstable
 %define		orgname		kdebindings
@@ -10,12 +12,12 @@
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.2.96
+Version:	4.2.98
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	b85be1ab3de88650b7f22ae7e0a2cf5e
+# Source0-md5:	23778a672635c8dd4cc46ee1d00765c1
 #Patch0:	%{name}-csharp.patch
 BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	QtUiTools-devel >= %{qtver}
@@ -35,8 +37,8 @@ BuildRequires:	python-PyQt4-devel >= 4.5
 BuildRequires:	python-sip >= 4.8
 BuildRequires:	qscintilla2-devel
 BuildRequires:	rpmbuild(macros) >= 1.213
-BuildRequires:	ruby-devel
-BuildRequires:	ruby-qt4-devel
+%{?with_ruby:BuildRequires:	ruby-devel}
+%{?with_smoke:BuildRequires:	ruby-qt4-devel}
 #BuildConflicts:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -192,6 +194,8 @@ cd build
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
 	-DSYSCONF_INSTALL_DIR=%{_sysconfdir} \
 	-DCMAKE_BUILD_TYPE=%{!?debug:release}%{?debug:debug} \
+	-DBUILD_smoke=%{!?with_smoke:OFF}%{?with_smoke:ON} \
+	-DBUILD_ruby=%{!?with_ruby:OFF}%{?with_ruby:ON} \
 %if "%{_lib}" == "lib64"
 	-DLIB_SUFFIX=64 \
 %endif
@@ -230,6 +234,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	ruby-qt -p /sbin/ldconfig
 %postun	ruby-qt -p /sbin/ldconfig
 
+%if %{with dotnet}
 %files kimono
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/kde4/kimonopluginfactory.so
@@ -293,7 +298,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/qttest-sharp.pc
 %{_pkgconfigdir}/qtuitools-sharp.pc
 %{_pkgconfigdir}/qtwebkit-sharp.pc
+%endif
 
+%if %{with smoke}
 %files smoke-qt
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libsmokeqt.so.*.*.*
@@ -353,7 +360,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_includedir}/smoke
 %{_includedir}/smoke/*.h
 %{_includedir}/smoke.h
+%endif
 
+%if %{with ruby}
 %files ruby-qt
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/rbqtapi
@@ -426,6 +435,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libqtruby4shared.so
 %dir %{_includedir}/qtruby
 %{_includedir}/qtruby/*.h
+%endif
 
 %files -n python-PyKDE4
 %defattr(644,root,root,755)
