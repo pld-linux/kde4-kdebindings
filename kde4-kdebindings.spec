@@ -27,7 +27,6 @@ BuildRequires:	cmake >= 2.6.3
 BuildRequires:	kde4-kdegraphics-devel >= %{version}
 BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kde4-kdepimlibs-devel >= %{version}
-BuildRequires:	kde4-kdevplatform-devel
 %{?with_dotnet:BuildRequires:	mono-csharp}
 %{?with_dotnet:BuildRequires:	monodoc}
 BuildRequires:	phonon-devel >= 4.3.1
