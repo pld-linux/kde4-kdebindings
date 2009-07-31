@@ -1,23 +1,24 @@
 #
 # Conditional build:
 %bcond_without	dotnet	# build without dotnet bindings
+%bcond_with	smoke	# build libsmokekde
+%bcond_with	ruby	# build ruby bindings
 
 %define		_state		stable
 %define		orgname		kdebindings
-%define		qtver		4.5.0
+%define		qtver		4.5.2
+
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.2.4
+Version:	4.3.0
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	db0e95addf2b2874434ae8505733cdcd
-Patch0:		%{name}-csharp.patch
-BuildRequires:	QtDesigner-devel >= %{qtver}
+# Source0-md5:	1b6cd0a20586eea0161e782be9c16326
+#Patch0:	%{name}-csharp.patch
 BuildRequires:	QtGui-devel >= %{qtver}
-BuildRequires:	QtSvg-devel >= %{qtver}
 BuildRequires:	QtUiTools-devel >= %{qtver}
 BuildRequires:	QtWebKit-devel >= %{qtver}
 BuildRequires:	automoc4 >= 0.9.88
@@ -28,12 +29,14 @@ BuildRequires:	kde4-kdepimlibs-devel >= %{version}
 %{?with_dotnet:BuildRequires:	mono-csharp}
 %{?with_dotnet:BuildRequires:	monodoc}
 BuildRequires:	phonon-devel >= 4.3.1
-BuildRequires:	python-PyQt4-devel >= 4.4.4
-BuildRequires:	python-sip >= 4.7.8
+# PolicyKit-kde (qt)
+BuildRequires:	kde4-kdebase-workspace-devel
+BuildRequires:	python-PyQt4-devel >= 4.5
+BuildRequires:	python-sip >= 4.8
 BuildRequires:	qscintilla2-devel
 BuildRequires:	rpmbuild(macros) >= 1.213
-BuildRequires:	ruby-devel
-BuildRequires:	ruby-qt4-devel
+%{?with_ruby:BuildRequires:	ruby-devel}
+%{?with_smoke:BuildRequires:	ruby-qt4-devel}
 #BuildConflicts:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -180,7 +183,7 @@ pliki nagłówkowe dla qyoto.
 
 %prep
 %setup -q -n %{orgname}-%{version}
-%patch0 -p1
+#%patch0 -p1
 
 %build
 install -d build
@@ -189,6 +192,8 @@ cd build
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
 	-DSYSCONF_INSTALL_DIR=%{_sysconfdir} \
 	-DCMAKE_BUILD_TYPE=%{!?debug:release}%{?debug:debug} \
+	-DBUILD_smoke=%{!?with_smoke:OFF}%{?with_smoke:ON} \
+	-DBUILD_ruby=%{!?with_ruby:OFF}%{?with_ruby:ON} \
 %if "%{_lib}" == "lib64"
 	-DLIB_SUFFIX=64 \
 %endif
@@ -227,6 +232,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	ruby-qt -p /sbin/ldconfig
 %postun	ruby-qt -p /sbin/ldconfig
 
+%if %{with dotnet}
 %files kimono
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/kde4/kimonopluginfactory.so
@@ -265,24 +271,34 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libqttest-sharp.so
 %attr(755,root,root) %{_libdir}/libqtuitools-sharp.so
 %attr(755,root,root) %{_libdir}/libqtwebkit-sharp.so
+%attr(755,root,root) %{_libdir}/libqimageblitz-sharp.so
 %{_prefix}/lib/mono/2.0/qt-dotnet.dll
 %{_prefix}/lib/mono/2.0/qtscript.dll
 %{_prefix}/lib/mono/2.0/qttest.dll
 %{_prefix}/lib/mono/2.0/qtuitools.dll
 %{_prefix}/lib/mono/2.0/qtwebkit.dll
+%{_prefix}/lib/mono/2.0/qimageblitz.dll
 %{_prefix}/lib/mono/gac/qt-dotnet
 %{_prefix}/lib/mono/gac/qtscript
 %{_prefix}/lib/mono/gac/qttest
 %{_prefix}/lib/mono/gac/qtuitools
 %{_prefix}/lib/mono/gac/qtwebkit
-
+%{_prefix}/lib/mono/gac/qimageblitz
+      
 %files -n qyoto-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/csrcc
 %attr(755,root,root) %{_bindir}/uics
 %attr(755,root,root) %{_libdir}/libqyotoshared.so
 %{_includedir}/qyoto
+%{_pkgconfigdir}/qyoto.pc
+%{_pkgconfigdir}/qtscript-sharp.pc
+%{_pkgconfigdir}/qttest-sharp.pc
+%{_pkgconfigdir}/qtuitools-sharp.pc
+%{_pkgconfigdir}/qtwebkit-sharp.pc
+%endif
 
+%if %{with smoke}
 %files smoke-qt
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libsmokeqt.so.*.*.*
@@ -295,6 +311,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libsmokeqtuitools.so.?
 %attr(755,root,root) %{_libdir}/libsmokeqttest.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmokeqttest.so.?
+%attr(755,root,root) %{_libdir}/libsmokeqimageblitz.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokeqimageblitz.so.?
 
 %files smoke-kde
 %defattr(644,root,root,755)
@@ -336,10 +354,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libsmokesolid.so
 %attr(755,root,root) %{_libdir}/libsmokesoprano.so
 %attr(755,root,root) %{_libdir}/libsmokeqsci.so
+%attr(755,root,root) %{_libdir}/libsmokeqimageblitz.so
 %dir %{_includedir}/smoke
 %{_includedir}/smoke/*.h
 %{_includedir}/smoke.h
+%endif
 
+%if %{with ruby}
 %files ruby-qt
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/rbqtapi
@@ -412,6 +433,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libqtruby4shared.so
 %dir %{_includedir}/qtruby
 %{_includedir}/qtruby/*.h
+%endif
 
 %files -n python-PyKDE4
 %defattr(644,root,root,755)
@@ -433,6 +455,7 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitedir}/PyKDE4/soprano.so
 %{py_sitedir}/PyKDE4/nepomuk.so
 %{py_sitedir}/PyKDE4/akonadi.so
+%{py_sitedir}/PyKDE4/polkitqt.so
 %{py_sitedir}/PyKDE4/__init__.py[co]
 %{py_sitedir}/PyKDE4/pykdeconfig.py[co]
 %{_datadir}/sip/PyKDE4/glossary.html
@@ -459,6 +482,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/sip/PyKDE4/kdeui
 %{_datadir}/sip/PyKDE4/kutils
 %{_datadir}/sip/PyKDE4/kparts
+%{_datadir}/sip/PyKDE4/polkitqt
 
 %files -n python-PyKDE4-examples
 %defattr(644,root,root,755)
