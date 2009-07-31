@@ -6,18 +6,17 @@
 
 %define		_state		unstable
 %define		orgname		kdebindings
-%define		qtver		4.5.1
-%define		svn		979380
+%define		qtver		4.5.2
 
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.2.98
+Version:	4.3.0
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	23778a672635c8dd4cc46ee1d00765c1
+# Source0-md5:	1b6cd0a20586eea0161e782be9c16326
 #Patch0:	%{name}-csharp.patch
 BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	QtUiTools-devel >= %{qtver}
