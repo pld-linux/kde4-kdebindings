@@ -191,7 +191,7 @@ cd build
 %cmake \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
 	-DSYSCONF_INSTALL_DIR=%{_sysconfdir} \
-	-DCMAKE_BUILD_TYPE=%{!?debug:release}%{?debug:debug} \
+	-DCMAKE_BUILD_TYPE=%{!?debug:Release}%{?debug:Debug} \
 	-DBUILD_smoke=%{!?with_smoke:OFF}%{?with_smoke:ON} \
 	-DBUILD_ruby=%{!?with_ruby:OFF}%{?with_ruby:ON} \
 %if "%{_lib}" == "lib64"
