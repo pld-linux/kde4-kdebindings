@@ -16,7 +16,7 @@ Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	1b6cd0a20586eea0161e782be9c16326
+# Source0-md5:	6ef02ed3c958d918eed32ddf4034e40d
 #Patch0:	%{name}-csharp.patch
 BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	QtUiTools-devel >= %{qtver}
