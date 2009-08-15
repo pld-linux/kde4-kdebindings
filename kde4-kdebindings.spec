@@ -1,8 +1,8 @@
 #
 # Conditional build:
 %bcond_without	dotnet	# build without dotnet bindings
-%bcond_with	smoke	# build libsmokekde
-%bcond_with	ruby	# build ruby bindings
+%bcond_without	smoke	# build libsmokekde
+%bcond_without	ruby	# build ruby bindings
 
 %define		_state		stable
 %define		orgname		kdebindings
