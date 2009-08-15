@@ -289,7 +289,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_prefix}/lib/mono/gac/qtuitools
 %{_prefix}/lib/mono/gac/qtwebkit
 %{_prefix}/lib/mono/gac/qimageblitz
-      
+
 %files -n qyoto-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/csrcc
@@ -442,6 +442,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n python-PyKDE4
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/pykdeuic4
 %attr(755,root,root) %{_libdir}/kde4/kpythonpluginfactory.so
 %attr(755,root,root) %{_libdir}/kde4/krosspython.so
 %dir %{py_sitedir}/PyKDE4
@@ -465,11 +466,10 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitedir}/PyKDE4/pykdeconfig.py[co]
 %{_datadir}/sip/PyKDE4/glossary.html
 
-%dir %{_datadir}/apps/pykde4
-%{_datadir}/apps/pykde4/kde4.py
-%{_datadir}/apps/pykde4/kde4.pyc
-%{_datadir}/apps/pykde4/pykdeuic4.py
-%{_datadir}/apps/pykde4/pykdeuic4.pyc
+%{py_sitedir}/PyQt4/uic/pykdeuic4.pyc
+# TODO move this dir to python-PyQt4 ?
+%dir %{py_sitedir}/PyQt4/uic/widget-plugins
+%{py_sitedir}/PyQt4/uic/widget-plugins/kde4.pyc
 
 %dir %{_datadir}/sip/PyKDE4
 %{_datadir}/sip/PyKDE4/nepomuk
