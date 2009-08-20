@@ -4,19 +4,21 @@
 %bcond_without	smoke	# build libsmokekde
 %bcond_without	ruby	# build ruby bindings
 
-%define		_state		stable
+%define		_state		unstable
 %define		orgname		kdebindings
 %define		qtver		4.5.2
+%define		snap		svn1010339
 
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.3.0
-Release:	2
+Version:	4.3.64
+Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	6ef02ed3c958d918eed32ddf4034e40d
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}%{snap}.tar.bz2
+# Source0-md5:	d5865b15b24505e3e44d75db670cf5d2
 #Patch0:	%{name}-csharp.patch
 BuildRequires:	QtDesigner-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
@@ -188,7 +190,8 @@ qyoto header files.
 pliki nagłówkowe dla qyoto.
 
 %prep
-%setup -q -n %{orgname}-%{version}
+%setup -q -n %{orgname}-%{version}%{snap}
+##%setup -q -n %{orgname}-%{version}
 #%patch0 -p1
 
 %build
