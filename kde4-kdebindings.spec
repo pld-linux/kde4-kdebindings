@@ -190,6 +190,19 @@ pliki nagłówkowe dla qyoto.
 %prep
 %setup -q -n %{orgname}-%{version}
 #%patch0 -p1
+# Very ugly hack, but damn, i'm sick of this package
+%if %{without smoke}
+%{__sed} -i -e 's/macro_optional_add_subdirectory(smoke)//' CMakeLists.txt
+%endif
+%if %{without ruby}
+%{__sed} -i -e 's/macro_optional_add_subdirectory(ruby)//' CMakeLists.txt
+%endif
+%if %{without csharp}
+%{__sed} -i -e 's/macro_optional_add_subdirectory(csharp)//' CMakeLists.txt
+%{__sed} -i -e 's/macro_optional_add_subdirectory(java)//' CMakeLists.txt
+%{__sed} -i -e 's/macro_optional_add_subdirectory(php)//' CMakeLists.txt
+%{__sed} -i -e 's/macro_optional_add_subdirectory(falcon)//' CMakeLists.txt
+%endif
 
 %build
 install -d build
