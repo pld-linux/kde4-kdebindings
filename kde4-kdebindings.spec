@@ -6,7 +6,7 @@
 
 %define		_state		stable
 %define		orgname		kdebindings
-%define		qtver		4.5.2
+%define		qtver		4.5.3
 
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
