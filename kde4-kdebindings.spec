@@ -25,6 +25,7 @@ BuildRequires:	QtSvg-devel >= %{qtver}
 BuildRequires:	QtUiTools-devel >= %{qtver}
 BuildRequires:	QtWebKit-devel >= %{qtver}
 BuildRequires:	automoc4 >= 0.9.88
+BuildRequires:	boost-devel
 BuildRequires:	cmake >= 2.6.3
 BuildRequires:	kde4-kdegraphics-devel >= %{version}
 BuildRequires:	kde4-kdelibs-devel >= %{version}
@@ -35,8 +36,8 @@ BuildRequires:	phonon-devel >= 4.3.1
 BuildRequires:	polkit-qt-devel
 # PolicyKit-kde (qt)
 BuildRequires:	kde4-kdebase-workspace-devel
-BuildRequires:	python-PyQt4-devel >= 4.5
-BuildRequires:	python-sip >= 4.8
+BuildRequires:	python-PyQt4-devel >= 4.6
+BuildRequires:	python-sip >= 4.9
 BuildRequires:	qimageblitz-devel
 BuildRequires:	qscintilla2-devel
 BuildRequires:	rpmbuild(macros) >= 1.213
