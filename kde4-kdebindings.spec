@@ -17,7 +17,7 @@ License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
 # Source0-md5:	3187ea9d9913edf4c25ba299dab0d117
-#Patch0:	%{name}-csharp.patch
+#Patch0: %{name}-csharp.patch
 BuildRequires:	QtDesigner-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	QtOpenGL-devel >= %{qtver}
@@ -41,11 +41,11 @@ BuildRequires:	python-sip >= 4.9
 BuildRequires:	qimageblitz-devel
 BuildRequires:	qscintilla2-devel
 BuildRequires:	rpmbuild(macros) >= 1.213
-BuildRequires:	soprano-devel
 %{?with_ruby:BuildRequires:	ruby-devel}
 %{?with_smoke:BuildRequires:	ruby-qt4-devel}
-%{!?with_smoke:BuildConflicts:	ruby-qt4-devel}
+BuildRequires:	soprano-devel
 #BuildConflicts:	qt-devel
+%{!?with_smoke:BuildConflicts:	ruby-qt4-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
