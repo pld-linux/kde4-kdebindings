@@ -44,6 +44,7 @@ BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	soprano-devel
 %{?with_ruby:BuildRequires:	ruby-devel}
 %{?with_smoke:BuildRequires:	ruby-qt4-devel}
+%{!?with_smoke:BuildConflicts:	ruby-qt4-devel}
 #BuildConflicts:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
