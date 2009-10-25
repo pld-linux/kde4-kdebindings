@@ -36,7 +36,7 @@ BuildRequires:	phonon-devel >= 4.3.1
 BuildRequires:	polkit-qt-devel
 # PolicyKit-kde (qt)
 BuildRequires:	kde4-kdebase-workspace-devel
-BuildRequires:	python-PyQt4-devel >= 4.6
+BuildRequires:	python-PyQt4-devel >= 4.5
 BuildRequires:	python-sip >= 4.9
 BuildRequires:	qimageblitz-devel
 BuildRequires:	qscintilla2-devel
