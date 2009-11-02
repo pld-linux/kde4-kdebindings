@@ -7,18 +7,17 @@
 %define		_state		unstable
 %define		orgname		kdebindings
 %define		qtver		4.5.3
-%define		snap		svn1035674
+%define		snap		svn1040395
 
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.3.72
+Version:	4.3.73
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}%{snap}.tar.bz2
-# Source0-md5:	41efd9b5a995dce2756d9015921a9c84
-#Patch0: %{name}-csharp.patch
+# Source0-md5:	4e4fad7338073929282bba06f40e2f5f
 BuildRequires:	QtDesigner-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	QtOpenGL-devel >= %{qtver}
@@ -30,7 +29,6 @@ BuildRequires:	QtWebKit-devel >= %{qtver}
 BuildRequires:	automoc4 >= 0.9.88
 BuildRequires:	boost-devel
 BuildRequires:	cmake >= 2.6.3
-BuildRequires:	kde4-kdegraphics-devel >= %{version}
 BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kde4-kdepimlibs-devel >= %{version}
 %{?with_dotnet:BuildRequires:	mono-csharp}
@@ -38,7 +36,6 @@ BuildRequires:	kde4-kdepimlibs-devel >= %{version}
 BuildRequires:	phonon-devel >= 4.3.1
 BuildRequires:	polkit-qt-devel
 # PolicyKit-kde (qt)
-BuildRequires:	kde4-kdebase-workspace-devel
 BuildRequires:	python-PyQt4-devel >= 4.5
 BuildRequires:	python-sip >= 4.9
 BuildRequires:	qimageblitz-devel
@@ -194,7 +191,6 @@ pliki nagłówkowe dla qyoto.
 
 %prep
 %setup -q -n %{orgname}-%{version}%{snap}
-#%patch0 -p1
 # Very ugly hack, but damn, i'm sick of this package
 %if %{without smoke}
 %{__sed} -i -e 's/macro_optional_add_subdirectory(smoke)//' CMakeLists.txt
