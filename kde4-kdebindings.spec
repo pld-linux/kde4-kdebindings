@@ -7,17 +7,17 @@
 %define		_state		unstable
 %define		orgname		kdebindings
 %define		qtver		4.5.3
-%define		snap		svn1040395
+%define		snap		svn1048496
 
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.3.73
+Version:	4.3.75
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}%{snap}.tar.bz2
-# Source0-md5:	4e4fad7338073929282bba06f40e2f5f
+# Source0-md5:	59ef291c80442ac5f15618b44c265d53
 BuildRequires:	QtDesigner-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	QtOpenGL-devel >= %{qtver}
