@@ -1,0 +1,66 @@
+diff -ru kdebindings-4.3.80.old/python/pykde4/sip/akonadi/agentfilterproxymodel.sip kdebindings-4.3.80/python/pykde4/sip/akonadi/agentfilterproxymodel.sip
+--- kdebindings-4.3.80.old/python/pykde4/sip/akonadi/agentfilterproxymodel.sip	2009-12-02 12:06:48.396189477 +0100
++++ kdebindings-4.3.80/python/pykde4/sip/akonadi/agentfilterproxymodel.sip	2009-12-02 12:15:04.319460923 +0100
+@@ -80,8 +80,8 @@
+ #include <akonadi/selectionproxymodel.h>
+ #include <akonadi/servermanager.h>
+ #include <akonadi/session.h>
+-#include <akonadi/kmime/specialcollections.h>
+-#include <akonadi/kmime/specialcollectionsrequestjob.h>
++#include <akonadi/kmime/specialmailcollections.h>
++#include <akonadi/kmime/specialmailcollectionsrequestjob.h>
+ #include <akonadi/standardactionmanager.h>
+ #include <akonadi/statisticsproxymodel.h>
+ #include <akonadi/transactionjobs.h>
+diff -ru kdebindings-4.3.80.old/python/pykde4/sip/akonadi/preprocessorbase.sip kdebindings-4.3.80/python/pykde4/sip/akonadi/preprocessorbase.sip
+--- kdebindings-4.3.80.old/python/pykde4/sip/akonadi/preprocessorbase.sip	2009-12-02 12:06:48.402844156 +0100
++++ kdebindings-4.3.80/python/pykde4/sip/akonadi/preprocessorbase.sip	2009-12-02 12:15:20.862583263 +0100
+@@ -248,8 +248,8 @@
+ #include <akonadi/searchcreatejob.h>
+ #include <akonadi/servermanager.h>
+ #include <akonadi/session.h>
+-#include <akonadi/kmime/specialcollections.h>
+-#include <akonadi/kmime/specialcollectionsrequestjob.h>
++#include <akonadi/kmime/specialmailcollections.h>
++#include <akonadi/kmime/specialmailcollectionsrequestjob.h>
+ #include <akonadi/standardactionmanager.h>
+ #include <akonadi/statisticsproxymodel.h>
+ #include <akonadi/transactionjobs.h>
+diff -ru kdebindings-4.3.80.old/python/pykde4/sip/akonadi/specialcollectionsrequestjob.sip kdebindings-4.3.80/python/pykde4/sip/akonadi/specialcollectionsrequestjob.sip
+--- kdebindings-4.3.80.old/python/pykde4/sip/akonadi/specialcollectionsrequestjob.sip	2009-12-02 12:06:48.402844156 +0100
++++ kdebindings-4.3.80/python/pykde4/sip/akonadi/specialcollectionsrequestjob.sip	2009-12-02 12:15:12.719460441 +0100
+@@ -22,7 +22,7 @@
+ class SpecialCollectionsRequestJob : Akonadi::TransactionSequence
+ {
+ %TypeHeaderCode
+-#include <akonadi/kmime/specialcollectionsrequestjob.h>
++#include <akonadi/kmime/specialmailcollectionsrequestjob.h>
+ %End
+ 
+ public:
+diff -ru kdebindings-4.3.80.old/python/pykde4/sip/akonadi/specialcollections.sip kdebindings-4.3.80/python/pykde4/sip/akonadi/specialcollections.sip
+--- kdebindings-4.3.80.old/python/pykde4/sip/akonadi/specialcollections.sip	2009-12-02 12:06:48.402844156 +0100
++++ kdebindings-4.3.80/python/pykde4/sip/akonadi/specialcollections.sip	2009-12-02 12:10:37.812801005 +0100
+@@ -22,7 +22,7 @@
+ class SpecialCollections : QObject /Abstract/
+ {
+ %TypeHeaderCode
+-#include <akonadi/kmime/specialcollections.h>
++#include <akonadi/kmime/specialmailcollections.h>
+ %End
+ 
+ public:
+diff -ru kdebindings-4.3.80.old/smoke/akonadi/akonadi_includes.h kdebindings-4.3.80/smoke/akonadi/akonadi_includes.h
+--- kdebindings-4.3.80.old/smoke/akonadi/akonadi_includes.h	2009-12-02 12:06:48.222634479 +0100
++++ kdebindings-4.3.80/smoke/akonadi/akonadi_includes.h	2009-12-02 12:14:57.256128729 +0100
+@@ -86,8 +86,8 @@
+ #include <akonadi/kmime/messageparts.h>
+ #include <akonadi/kmime/messagethreaderproxymodel.h>
+ #include <akonadi/kmime/messagethreadingattribute.h>
+-#include <akonadi/kmime/specialcollections.h>
+-#include <akonadi/kmime/specialcollectionsrequestjob.h>
++#include <akonadi/kmime/specialmailcollections.h>
++#include <akonadi/kmime/specialmailcollectionsrequestjob.h>
+ #include <akonadi/linkjob.h>
+ #include <akonadi/mimetypechecker.h>
+ #include <akonadi/monitor.h>
