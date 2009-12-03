@@ -6,18 +6,19 @@
 
 %define		_state		unstable
 %define		orgname		kdebindings
-%define		qtver		4.5.3
+%define		qtver		4.6.0
 %define		snap		svn1048496
 
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.3.75
+Version:	4.3.80
 Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}%{snap}.tar.bz2
-# Source0-md5:	59ef291c80442ac5f15618b44c265d53
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
+# Source0-md5:	dc060b2d2c88cf5860dc60d563396f17
+Patch0:		%{name}-akonadiheaders.patch
 BuildRequires:	QtDesigner-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	QtOpenGL-devel >= %{qtver}
@@ -43,7 +44,7 @@ BuildRequires:	qscintilla2-devel
 BuildRequires:	rpmbuild(macros) >= 1.213
 %{?with_ruby:BuildRequires:	ruby-devel}
 %{?with_smoke:BuildRequires:	ruby-qt4-devel}
-BuildRequires:	soprano-devel
+BuildRequires:	soprano-devel >= 2.3.70
 #BuildConflicts:	qt-devel
 %{!?with_smoke:BuildConflicts:	ruby-qt4-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -190,7 +191,8 @@ qyoto header files.
 pliki nagłówkowe dla qyoto.
 
 %prep
-%setup -q -n %{orgname}-%{version}%{snap}
+%setup -q -n %{orgname}-%{version}
+%patch0 -p1
 # Very ugly hack, but damn, i'm sick of this package
 %if %{without smoke}
 %{__sed} -i -e 's/macro_optional_add_subdirectory(smoke)//' CMakeLists.txt
