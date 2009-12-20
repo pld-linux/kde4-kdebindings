@@ -12,12 +12,12 @@
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.3.80
+Version:	4.3.85
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	f633d57dc88e5fca24e311bc672f7c6c
+# Source0-md5:	5dab7234c41eaa4bf2de6e5df3e10ecf
 BuildRequires:	QtDesigner-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	QtOpenGL-devel >= %{qtver}
@@ -30,10 +30,11 @@ BuildRequires:	automoc4 >= 0.9.88
 BuildRequires:	boost-devel
 BuildRequires:	cmake >= 2.6.3
 BuildRequires:	kde4-kdelibs-devel >= %{version}
+BuildRequires:	kde4-kdebase-workspace-devel >= %{version}
 BuildRequires:	kde4-kdepimlibs-devel >= %{version}
 %{?with_dotnet:BuildRequires:	mono-csharp}
 %{?with_dotnet:BuildRequires:	monodoc}
-BuildRequires:	phonon-devel >= 4.3.1
+BuildRequires:	phonon-devel >= 4.3.80
 BuildRequires:	polkit-qt-devel
 # PolicyKit-kde (qt)
 BuildRequires:	python-PyQt4-devel >= 4.5
