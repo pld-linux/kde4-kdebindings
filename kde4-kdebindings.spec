@@ -35,7 +35,7 @@ BuildRequires:	kde4-kdepimlibs-devel >= %{version}
 %{?with_dotnet:BuildRequires:	mono-csharp}
 %{?with_dotnet:BuildRequires:	monodoc}
 BuildRequires:	phonon-devel >= 4.3.80
-BuildRequires:	polkit-qt-devel
+BuildRequires:	polkit-qt-devel >= 0.9.3
 # PolicyKit-kde (qt)
 BuildRequires:	python-PyQt4-devel >= 4.5
 BuildRequires:	python-sip >= 4.9
