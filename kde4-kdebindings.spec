@@ -17,7 +17,7 @@ Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	5dab7234c41eaa4bf2de6e5df3e10ecf
+# Source0-md5:	86fbd7d6038ed34bd701f05217ee7d87
 BuildRequires:	QtDesigner-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	QtOpenGL-devel >= %{qtver}
