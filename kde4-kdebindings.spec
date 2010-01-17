@@ -37,8 +37,8 @@ BuildRequires:	kde4-kdepimlibs-devel >= %{version}
 BuildRequires:	phonon-devel >= 4.3.80
 BuildRequires:	polkit-qt-devel >= 0.9.3
 # PolicyKit-kde (qt)
-BuildRequires:	python-PyQt4-devel >= 4.5
-BuildRequires:	python-sip >= 4.9
+BuildRequires:	python-PyQt4-devel >= 4.7
+BuildRequires:	python-sip >= 4.10
 BuildRequires:	qimageblitz-devel
 BuildRequires:	qscintilla2-devel
 BuildRequires:	rpmbuild(macros) >= 1.213
