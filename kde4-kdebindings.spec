@@ -18,6 +18,7 @@ License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
 # Source0-md5:	7a9cc47662e9c3b7d74b9b3c620c981f
+BuildRequires:	PolicyKit-devel
 BuildRequires:	QtDesigner-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
 BuildRequires:	QtOpenGL-devel >= %{qtver}
@@ -29,18 +30,22 @@ BuildRequires:	QtWebKit-devel >= %{qtver}
 BuildRequires:	automoc4 >= 0.9.88
 BuildRequires:	boost-devel
 BuildRequires:	cmake >= 2.6.3
-BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kde4-kdebase-workspace-devel >= %{version}
+BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kde4-kdepimlibs-devel >= %{version}
 %{?with_dotnet:BuildRequires:	mono-csharp}
 %{?with_dotnet:BuildRequires:	monodoc}
 BuildRequires:	phonon-devel >= 4.3.80
+BuildRequires:	pkgconfig
 BuildRequires:	polkit-qt-devel >= 0.9.3
 # PolicyKit-kde (qt)
 BuildRequires:	python-PyQt4-devel >= 4.7
 BuildRequires:	python-sip >= 4.10
 BuildRequires:	qimageblitz-devel
 BuildRequires:	qscintilla2-devel
+BuildRequires:	qt4-build
+BuildRequires:	qt4-qmake
+BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.213
 %{?with_ruby:BuildRequires:	ruby-devel}
 %{?with_smoke:BuildRequires:	ruby-qt4-devel}
