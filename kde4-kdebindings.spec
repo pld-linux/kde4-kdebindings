@@ -43,8 +43,8 @@ BuildRequires:	python-PyQt4-devel >= 4.7
 BuildRequires:	python-sip >= 4.10
 BuildRequires:	qimageblitz-devel
 BuildRequires:	qscintilla2-devel
-BuildRequires:	qt4-build
-BuildRequires:	qt4-qmake
+BuildRequires:	qt4-build >= %{qtver}
+BuildRequires:	qt4-qmake >= %{qtver}
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.213
 %{?with_ruby:BuildRequires:	ruby-devel}
