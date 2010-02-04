@@ -4,19 +4,20 @@
 %bcond_with	smoke	# build libsmokekde
 %bcond_with	ruby	# build ruby bindings
 
-%define		_state		unstable
+%define		_state		stable
 %define		orgname		kdebindings
 %define		qtver		4.6.1
 
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.3.98
+Version:	4.4.0
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	9682a736d80beacb7d0318bb225ce4dc
+# Source0-md5:	9e3c77d3f230850799c2ad8d2107eadb
+Patch0:		%{name}-plasma.patch
 BuildRequires:	PolicyKit-devel
 BuildRequires:	QtDesigner-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
@@ -196,6 +197,7 @@ pliki nagłówkowe dla qyoto.
 
 %prep
 %setup -q -n %{orgname}-%{version}
+%patch0 -p1
 # Very ugly hack, but damn, i'm sick of this package
 %if %{without smoke}
 %{__sed} -i -e 's/macro_optional_add_subdirectory(smoke)//' CMakeLists.txt
