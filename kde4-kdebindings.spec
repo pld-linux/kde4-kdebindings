@@ -12,12 +12,11 @@ Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
 Version:	4.4.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	9e3c77d3f230850799c2ad8d2107eadb
-Patch0:		%{name}-plasma.patch
+# Source0-md5:	fe9617eeb6430d12428d4bf1898bc955
 BuildRequires:	PolicyKit-devel
 BuildRequires:	QtDesigner-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
@@ -197,7 +196,6 @@ pliki nagłówkowe dla qyoto.
 
 %prep
 %setup -q -n %{orgname}-%{version}
-%patch0 -p1
 # Very ugly hack, but damn, i'm sick of this package
 %if %{without smoke}
 %{__sed} -i -e 's/macro_optional_add_subdirectory(smoke)//' CMakeLists.txt
