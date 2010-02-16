@@ -7,7 +7,7 @@
 %define		_state		stable
 %define		orgname		kdebindings
 %define		qtver		4.6.1
-%define		sipver		4.10
+%define		sipver		2:4.10
 %define		pyqtver		4.7
 
 Summary:	KDE bindings to non-C++ languages
