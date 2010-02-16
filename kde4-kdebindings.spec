@@ -7,12 +7,13 @@
 %define		_state		stable
 %define		orgname		kdebindings
 %define		qtver		4.6.1
+%define		sipver		4.10
 
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
 Version:	4.4.0
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
@@ -39,7 +40,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	polkit-qt-devel >= 0.9.3
 # PolicyKit-kde (qt)
 BuildRequires:	python-PyQt4-devel >= 4.7
-BuildRequires:	python-sip >= 4.10
+BuildRequires:	python-sip >= %{sipver}
 BuildRequires:	qimageblitz-devel
 BuildRequires:	qscintilla2-devel
 BuildRequires:	qt4-build >= %{qtver}
@@ -143,6 +144,7 @@ Pliki nagłówkowe dla smoke.
 Summary:	Python bindings for KDE
 Summary(pl.UTF-8):	Dowiązania do KDE dla Pyth
 Group:		Libraries/Python
+Requires:	python-sip >= %{sipver}
 
 %description -n python-PyKDE4
 PyKDE is a set of Python bindings for the KDE desktop environment. The
