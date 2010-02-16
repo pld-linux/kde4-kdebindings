@@ -8,6 +8,7 @@
 %define		orgname		kdebindings
 %define		qtver		4.6.1
 %define		sipver		4.10
+%define		pyqtver		4.7
 
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
@@ -39,7 +40,7 @@ BuildRequires:	phonon-devel >= 4.3.80
 BuildRequires:	pkgconfig
 BuildRequires:	polkit-qt-devel >= 0.9.3
 # PolicyKit-kde (qt)
-BuildRequires:	python-PyQt4-devel >= 4.7
+BuildRequires:	python-PyQt4-devel >= %{pyqtver}
 BuildRequires:	python-sip >= %{sipver}
 BuildRequires:	qimageblitz-devel
 BuildRequires:	qscintilla2-devel
@@ -144,6 +145,7 @@ Pliki nagłówkowe dla smoke.
 Summary:	Python bindings for KDE
 Summary(pl.UTF-8):	Dowiązania do KDE dla Pyth
 Group:		Libraries/Python
+Requires:	python-PyQt4 >= %{pyqtver}
 Requires:	python-sip >= %{sipver}
 
 %description -n python-PyKDE4
