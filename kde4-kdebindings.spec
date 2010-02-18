@@ -28,6 +28,7 @@ BuildRequires:	QtSvg-devel >= %{qtver}
 BuildRequires:	QtTest-devel >= %{qtver}
 BuildRequires:	QtUiTools-devel >= %{qtver}
 BuildRequires:	QtWebKit-devel >= %{qtver}
+BuildRequires:	attica-devel
 BuildRequires:	automoc4 >= 0.9.88
 BuildRequires:	boost-devel
 BuildRequires:	cmake >= 2.8.0
@@ -42,14 +43,13 @@ BuildRequires:	polkit-qt-devel >= 0.9.3
 # PolicyKit-kde (qt)
 BuildRequires:	python-PyQt4-devel >= %{pyqtver}
 BuildRequires:	python-sip >= %{sipver}
-BuildRequires:	qimageblitz-devel
-BuildRequires:	qscintilla2-devel
 BuildRequires:	qt4-build >= %{qtver}
 BuildRequires:	qt4-qmake >= %{qtver}
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.213
 %{?with_ruby:BuildRequires:	ruby-devel}
 %{?with_smoke:BuildRequires:	ruby-qt4-devel}
+BuildRequires:	shared-desktop-ontologies-devel
 BuildRequires:	soprano-devel >= 2.3.70
 #BuildConflicts:	qt-devel
 %{!?with_smoke:BuildConflicts:	ruby-qt4-devel}
