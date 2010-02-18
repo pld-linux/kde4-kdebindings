@@ -6,18 +6,19 @@
 
 %define		_state		stable
 %define		orgname		kdebindings
-%define		qtver		4.5.3
+%define		qtver		4.6.1
+%define		sipver		2:4.10
+%define		pyqtver		4.7
 
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.3.5
-Release:	1
+Version:	4.4.0
+Release:	3
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	1309f89dc092aea932138b1444e64280
-#Patch0: %{name}-csharp.patch
+# Source0-md5:	fe9617eeb6430d12428d4bf1898bc955
 BuildRequires:	PolicyKit-devel
 BuildRequires:	QtDesigner-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
@@ -29,27 +30,27 @@ BuildRequires:	QtUiTools-devel >= %{qtver}
 BuildRequires:	QtWebKit-devel >= %{qtver}
 BuildRequires:	automoc4 >= 0.9.88
 BuildRequires:	boost-devel
-BuildRequires:	cmake >= 2.6.3
-BuildRequires:	kde4-kdebase-workspace-devel
+BuildRequires:	cmake >= 2.8.0
+BuildRequires:	kde4-kdebase-workspace-devel >= %{version}
 BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kde4-kdepimlibs-devel >= %{version}
 %{?with_dotnet:BuildRequires:	mono-csharp}
 %{?with_dotnet:BuildRequires:	monodoc}
-BuildRequires:	phonon-devel >= 4.3.1
+BuildRequires:	phonon-devel >= 4.3.80
 BuildRequires:	pkgconfig
-BuildRequires:	polkit-qt-devel
+BuildRequires:	polkit-qt-devel >= 0.9.3
 # PolicyKit-kde (qt)
-BuildRequires:	python-PyQt4-devel >= 4.5
-BuildRequires:	python-sip >= 4.9
+BuildRequires:	python-PyQt4-devel >= %{pyqtver}
+BuildRequires:	python-sip >= %{sipver}
 BuildRequires:	qimageblitz-devel
 BuildRequires:	qscintilla2-devel
-BuildRequires:	qt4-build
-BuildRequires:	qt4-qmake
+BuildRequires:	qt4-build >= %{qtver}
+BuildRequires:	qt4-qmake >= %{qtver}
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.213
 %{?with_ruby:BuildRequires:	ruby-devel}
 %{?with_smoke:BuildRequires:	ruby-qt4-devel}
-BuildRequires:	soprano-devel
+BuildRequires:	soprano-devel >= 2.3.70
 #BuildConflicts:	qt-devel
 %{!?with_smoke:BuildConflicts:	ruby-qt4-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -144,6 +145,8 @@ Pliki nagłówkowe dla smoke.
 Summary:	Python bindings for KDE
 Summary(pl.UTF-8):	Dowiązania do KDE dla Pyth
 Group:		Libraries/Python
+Requires:	python-PyQt4 >= %{pyqtver}
+Requires:	python-sip >= %{sipver}
 
 %description -n python-PyKDE4
 PyKDE is a set of Python bindings for the KDE desktop environment. The
@@ -197,7 +200,6 @@ pliki nagłówkowe dla qyoto.
 
 %prep
 %setup -q -n %{orgname}-%{version}
-#%patch0 -p1
 # Very ugly hack, but damn, i'm sick of this package
 %if %{without smoke}
 %{__sed} -i -e 's/macro_optional_add_subdirectory(smoke)//' CMakeLists.txt
