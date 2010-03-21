@@ -7,14 +7,14 @@
 %define		_state		stable
 %define		orgname		kdebindings
 %define		qtver		4.6.2
-%define		sipver		2:4.10
-%define		pyqtver		4.7
+%define		sipver		2:4.10.1
+%define		pyqtver		4.7.2
 
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
 Version:	4.4.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
@@ -330,6 +330,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with smoke}
 %files smoke-qt
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/smokegen
 %attr(755,root,root) %{_libdir}/libsmokeqt.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmokeqt.so.?
 %attr(755,root,root) %{_libdir}/libsmokeqtwebkit.so.*.*.*
