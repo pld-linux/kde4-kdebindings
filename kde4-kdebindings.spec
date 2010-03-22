@@ -14,7 +14,7 @@ Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
 Version:	4.4.1
-Release:	3
+Release:	4
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
@@ -241,7 +241,9 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/pykde4
 mv $RPM_BUILD_ROOT%{_datadir}/apps/pykde4/examples/* $RPM_BUILD_ROOT%{_examplesdir}/pykde4
 %py_comp $RPM_BUILD_ROOT%{py_sitedir}/PyKDE4
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}/PyKDE4
-%py_postclean
+
+# don't use py_postclean
+rm $RPM_BUILD_ROOT%{py_sitedir}/PyKDE4/*.py
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -491,10 +493,8 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitedir}/PyKDE4/pykdeconfig.py[co]
 %{_datadir}/sip/PyKDE4/glossary.html
 
-%{py_sitedir}/PyQt4/uic/pykdeuic4.pyc
-# TODO move this dir to python-PyQt4 ?
-%dir %{py_sitedir}/PyQt4/uic/widget-plugins
-%{py_sitedir}/PyQt4/uic/widget-plugins/kde4.pyc
+%{py_sitedir}/PyQt4/uic/pykdeuic4.py*
+%{py_sitedir}/PyQt4/uic/widget-plugins/kde4.py*
 
 %dir %{_datadir}/sip/PyKDE4
 %{_datadir}/sip/PyKDE4/nepomuk
