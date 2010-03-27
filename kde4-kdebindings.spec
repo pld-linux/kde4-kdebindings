@@ -229,6 +229,9 @@ cd build
 	../
 
 %{__make} -j1
+# funny bug begins
+%{__make} -j1
+# funny bug ends
 
 %install
 rm -rf $RPM_BUILD_ROOT
