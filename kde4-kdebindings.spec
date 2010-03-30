@@ -14,11 +14,11 @@ Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
 Version:	4.4.2
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	8f3544dcb587b6647dac8ddfca97fc74
+# Source0-md5:	50ac156078e5069b8400033653b59382
 BuildRequires:	PolicyKit-devel
 BuildRequires:	QtDesigner-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
@@ -228,10 +228,7 @@ cd build
 %endif
 	../
 
-%{__make} -j1 || :
-# funny bug begins
-%{__make} -j1
-# funny bug ends
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
