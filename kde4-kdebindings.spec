@@ -4,7 +4,7 @@
 %bcond_with	smoke	# build libsmokekde
 %bcond_with	ruby	# build ruby bindings
 
-%define		_state		stable
+%define		_state		unstable
 %define		orgname		kdebindings
 %define		qtver		4.6.2
 %define		sipver		2:4.10.1
@@ -13,12 +13,12 @@
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.4.3
+Version:	4.4.80
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	e6cce39fb0f78b589914678588ce5063
+# Source0-md5:	2869c46cddfeb3cac6f3466a81b85b4a
 BuildRequires:	PolicyKit-devel
 BuildRequires:	QtDesigner-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
@@ -28,7 +28,7 @@ BuildRequires:	QtSvg-devel >= %{qtver}
 BuildRequires:	QtTest-devel >= %{qtver}
 BuildRequires:	QtUiTools-devel >= %{qtver}
 BuildRequires:	QtWebKit-devel >= %{qtver}
-BuildRequires:	attica-devel
+BuildRequires:	attica-devel >= 0.1.4
 BuildRequires:	automoc4 >= 0.9.88
 BuildRequires:	boost-devel
 BuildRequires:	cmake >= 2.8.0
@@ -37,7 +37,7 @@ BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kde4-kdepimlibs-devel >= %{version}
 %{?with_dotnet:BuildRequires:	mono-csharp}
 %{?with_dotnet:BuildRequires:	monodoc}
-BuildRequires:	phonon-devel >= 4.3.80
+BuildRequires:	phonon-devel >= 4.4.1
 BuildRequires:	pkgconfig
 BuildRequires:	polkit-qt-devel >= 0.9.3
 # PolicyKit-kde (qt)
@@ -50,7 +50,7 @@ BuildRequires:	rpmbuild(macros) >= 1.213
 %{?with_ruby:BuildRequires:	ruby-devel}
 %{?with_smoke:BuildRequires:	ruby-qt4-devel}
 BuildRequires:	shared-desktop-ontologies-devel
-BuildRequires:	soprano-devel >= 2.3.70
+BuildRequires:	soprano-devel >= 2.4.63
 #BuildConflicts:	qt-devel
 %{!?with_smoke:BuildConflicts:	ruby-qt4-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
