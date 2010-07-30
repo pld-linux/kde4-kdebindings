@@ -1,7 +1,7 @@
 #
 # Conditional build:
 %bcond_with	dotnet	# build without dotnet bindings
-%bcond_with	smoke	# build libsmokekde
+%bcond_without	smoke	# build libsmokekde
 %bcond_with	ruby	# build ruby bindings
 
 %define		_state		stable
@@ -13,12 +13,12 @@
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.4.5
-Release:	2
+Version:	4.5.0
+Release:	0.1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	57a56607069d1f80164015c641e127e5
+# Source0-md5:	4f072d407fca8fe62f3ae1c39711d490
 BuildRequires:	PolicyKit-devel
 BuildRequires:	QtDesigner-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
@@ -47,8 +47,10 @@ BuildRequires:	qt4-build >= %{qtver}
 BuildRequires:	qt4-qmake >= %{qtver}
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.213
-%{?with_ruby:BuildRequires:	ruby-devel}
+%if %{with ruby}
+BuildRequires:	ruby-devel
 %{?with_smoke:BuildRequires:	ruby-qt4-devel}
+%endif
 BuildRequires:	shared-desktop-ontologies-devel
 BuildRequires:	soprano-devel >= 2.3.70
 #BuildConflicts:	qt-devel
@@ -333,16 +335,8 @@ rm -rf $RPM_BUILD_ROOT
 %files smoke-qt
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/smokegen
-%attr(755,root,root) %{_libdir}/libsmokeqt.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libsmokeqt.so.?
-%attr(755,root,root) %{_libdir}/libsmokeqtwebkit.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libsmokeqtwebkit.so.?
-%attr(755,root,root) %{_libdir}/libsmokeqtscript.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libsmokeqtscript.so.?
-%attr(755,root,root) %{_libdir}/libsmokeqtuitools.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libsmokeqtuitools.so.?
-%attr(755,root,root) %{_libdir}/libsmokeqttest.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libsmokeqttest.so.?
+%attr(755,root,root) %{_libdir}/libsmokeqt*.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokeqt*.so.?
 %attr(755,root,root) %{_libdir}/libsmokeqimageblitz.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmokeqimageblitz.so.?
 
@@ -350,12 +344,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libsmokeakonadi.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmokeakonadi.so.?
-%attr(755,root,root) %{_libdir}/libsmokekde.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libsmokekde.so.?
-%attr(755,root,root) %{_libdir}/libsmokekhtml.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libsmokekhtml.so.?
-%attr(755,root,root) %{_libdir}/libsmokektexteditor.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libsmokektexteditor.so.?
+%attr(755,root,root) %{_libdir}/libsmokek*.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokek*.so.?
 %attr(755,root,root) %{_libdir}/libsmokenepomuk.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmokenepomuk.so.?
 #%attr(755,root,root) %{_libdir}/libsmokephonon.so.*.*.*
@@ -366,26 +356,17 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libsmokesolid.so.?
 %attr(755,root,root) %{_libdir}/libsmokesoprano.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmokesoprano.so.?
-%attr(755,root,root) %{_libdir}/libsmokeqsci.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libsmokeqsci.so.?
 
 %files smoke-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libsmokeakonadi.so
-%attr(755,root,root) %{_libdir}/libsmokeqt.so
-%attr(755,root,root) %{_libdir}/libsmokeqtwebkit.so
-%attr(755,root,root) %{_libdir}/libsmokeqtscript.so
-%attr(755,root,root) %{_libdir}/libsmokeqtuitools.so
-%attr(755,root,root) %{_libdir}/libsmokeqttest.so
-%attr(755,root,root) %{_libdir}/libsmokekde.so
-%attr(755,root,root) %{_libdir}/libsmokekhtml.so
-%attr(755,root,root) %{_libdir}/libsmokektexteditor.so
+%attr(755,root,root) %{_libdir}/libsmokeq*.so
+%attr(755,root,root) %{_libdir}/libsmokek*.so
 %attr(755,root,root) %{_libdir}/libsmokenepomuk.so
 #%attr(755,root,root) %{_libdir}/libsmokephonon.so
 %attr(755,root,root) %{_libdir}/libsmokeplasma.so
 %attr(755,root,root) %{_libdir}/libsmokesolid.so
 %attr(755,root,root) %{_libdir}/libsmokesoprano.so
-%attr(755,root,root) %{_libdir}/libsmokeqsci.so
 %attr(755,root,root) %{_libdir}/libsmokeqimageblitz.so
 %dir %{_includedir}/smoke
 %{_includedir}/smoke/*.h
