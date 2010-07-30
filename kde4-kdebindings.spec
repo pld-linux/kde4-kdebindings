@@ -334,11 +334,19 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with smoke}
 %files smoke-qt
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/smokeapi
+%attr(755,root,root) %{_bindir}/puic4
 %attr(755,root,root) %{_bindir}/smokegen
 %attr(755,root,root) %{_libdir}/libsmokeqt*.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmokeqt*.so.?
 %attr(755,root,root) %{_libdir}/libsmokeqimageblitz.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmokeqimageblitz.so.?
+%attr(755,root,root) %ghost %{_libdir}/libsmokebase.so.?
+%attr(755,root,root) %{_libdir}/libsmokebase.so.*.*.*
+%attr(755,root,root) %{_libdir}/smokegen/generator_dump.so
+%attr(755,root,root) %{_libdir}/smokegen/generator_smoke.so
+%attr(755,root,root) %{_libdir}/libcppparser.so
+%{_datadir}/smokegen
 
 %files smoke-kde
 %defattr(644,root,root,755)
@@ -356,10 +364,24 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libsmokesolid.so.?
 %attr(755,root,root) %{_libdir}/libsmokesoprano.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmokesoprano.so.?
+%attr(755,root,root) %{_libdir}/kde4/kperlpluginfactory.so
+%attr(755,root,root) %ghost %{_libdir}/libsmokeattica.so.?
+%attr(755,root,root) %{_libdir}/libsmokeattica.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokenepomukquery.so.?
+%attr(755,root,root) %{_libdir}/libsmokenepomukquery.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokeokular.so.?
+%attr(755,root,root) %{_libdir}/libsmokeokular.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokephonon.so.?
+%attr(755,root,root) %{_libdir}/libsmokephonon.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokesopranoclient.so.?
+%attr(755,root,root) %{_libdir}/libsmokesopranoclient.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokesopranoserver.so.?
+%attr(755,root,root) %{_libdir}/libsmokesopranoserver.so.*.*.*
 
 %files smoke-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libsmokeakonadi.so
+%attr(755,root,root) %{_libdir}/libsmokeattica.so
 %attr(755,root,root) %{_libdir}/libsmokeq*.so
 %attr(755,root,root) %{_libdir}/libsmokek*.so
 %attr(755,root,root) %{_libdir}/libsmokenepomuk.so
@@ -368,9 +390,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libsmokesolid.so
 %attr(755,root,root) %{_libdir}/libsmokesoprano.so
 %attr(755,root,root) %{_libdir}/libsmokeqimageblitz.so
+%attr(755,root,root) %{_libdir}/libsmokenepomukquery.so
+%attr(755,root,root) %{_libdir}/libsmokeokular.so
+%attr(755,root,root) %{_libdir}/libsmokephonon.so
+%attr(755,root,root) %{_libdir}/libsmokesopranoclient.so
+%attr(755,root,root) %{_libdir}/libsmokesopranoserver.so
+%attr(755,root,root) %{_libdir}/libsmokebase.so
 %dir %{_includedir}/smoke
 %{_includedir}/smoke/*.h
 %{_includedir}/smoke.h
+%{_includedir}/smokegen
 %endif
 
 %if %{with ruby}
