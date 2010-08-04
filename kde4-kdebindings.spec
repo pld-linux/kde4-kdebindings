@@ -52,7 +52,7 @@ BuildRequires:	ruby-devel
 %{?with_smoke:BuildRequires:	ruby-qt4-devel}
 %endif
 BuildRequires:	shared-desktop-ontologies-devel
-BuildRequires:	soprano-devel >= 2.3.70
+BuildRequires:	soprano-devel >= 2.4.64
 #BuildConflicts:	qt-devel
 %{!?with_smoke:BuildConflicts:	ruby-qt4-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
