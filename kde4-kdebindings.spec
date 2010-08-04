@@ -1,7 +1,7 @@
 #
 # Conditional build:
 %bcond_with	dotnet	# build without dotnet bindings
-%bcond_with	smoke	# build libsmokekde
+%bcond_without	smoke	# build libsmokekde
 %bcond_with	ruby	# build ruby bindings
 
 %define		_state		stable
@@ -14,7 +14,7 @@ Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
 Version:	4.5.0
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
@@ -49,7 +49,7 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.213
 %if %{with ruby}
 BuildRequires:	ruby-devel
-%{?with_smoke:BuildRequires:	ruby-qt4-devel}
+%{?with_smoke:BuildRequires:	ruby-qt4-devel >= 2.1.0}
 %endif
 BuildRequires:	shared-desktop-ontologies-devel
 BuildRequires:	soprano-devel >= 2.4.64
