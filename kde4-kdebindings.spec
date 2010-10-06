@@ -19,6 +19,7 @@ License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
 # Source0-md5:	02f6a8397beb6a034fe9025f03f6bd02
+Patch0:		%{name}-sip.patch
 BuildRequires:	PolicyKit-devel
 BuildRequires:	QtDesigner-devel >= %{qtver}
 BuildRequires:	QtGui-devel >= %{qtver}
@@ -204,6 +205,7 @@ pliki nagłówkowe dla qyoto.
 
 %prep
 %setup -q -n %{orgname}-%{version}
+%patch0 -p1
 # Very ugly hack, but damn, i'm sick of this package
 %if %{without smoke}
 %{__sed} -i -e 's/macro_optional_add_subdirectory(smoke)//' CMakeLists.txt
