@@ -347,6 +347,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/puic4
 %attr(755,root,root) %{_bindir}/smokegen
 %attr(755,root,root) %{_libdir}/libsmokeqt*.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokeqsci.so.?
+%attr(755,root,root) %{_libdir}/libsmokeqsci.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsmokeqwt.so.?
+%attr(755,root,root) %{_libdir}/libsmokeqwt.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmokeqt*.so.?
 %attr(755,root,root) %{_libdir}/libsmokeqimageblitz.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libsmokeqimageblitz.so.?
