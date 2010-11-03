@@ -14,11 +14,11 @@ Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
 Version:	4.5.3
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	639a3ff6de7b19ca9437560a134f8629
+# Source0-md5:	a0ea9b5d9ea5108d20bf8cfbbde37909
 Patch100:	%{name}-branch.diff
 Patch0:		%{name}-sip.patch
 BuildRequires:	PolicyKit-devel
