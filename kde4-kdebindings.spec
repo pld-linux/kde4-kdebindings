@@ -14,7 +14,7 @@ Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
 Version:	4.5.4
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
@@ -224,6 +224,11 @@ pliki nagłówkowe dla qyoto.
 %{__sed} -i -e 's/macro_optional_add_subdirectory(php)//' CMakeLists.txt
 %{__sed} -i -e 's/macro_optional_add_subdirectory(falcon)//' CMakeLists.txt
 %endif
+
+# drop when fixed upstream
+grep -q QDBUS_EXPORT perl/qtdbus/tools/qdbusxml2perl/qdbusmetaobject_p.h && \
+	sed -i -e 's#QDBUS_EXPORT#Q_DBUS_EXPORT#g' \
+		perl/qtdbus/tools/qdbusxml2perl/qdbus{metaobject,introspection}_p.h || exit 1
 
 %build
 install -d build
