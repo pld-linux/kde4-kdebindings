@@ -6,7 +6,7 @@
 
 %define		_state		stable
 %define		orgname		kdebindings
-%define		qtver		4.7.0
+%define		qtver		4.7.1
 %define		sipver		2:4.11.1
 %define		pyqtver		4.7.2
 
@@ -53,7 +53,7 @@ BuildRequires:	qt4-build >= %{qtver}
 BuildRequires:	qt4-qmake >= %{qtver}
 BuildRequires:	qwt-devel
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.213
+BuildRequires:	rpmbuild(macros) >= 1.600
 %if %{with ruby}
 BuildRequires:	ruby-devel
 %{?with_smoke:BuildRequires:	ruby-qt4-devel >= 2.1.0}
@@ -229,14 +229,8 @@ pliki nagłówkowe dla qyoto.
 install -d build
 cd build
 %cmake \
-	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
-	-DSYSCONF_INSTALL_DIR=%{_sysconfdir} \
-	-DCMAKE_BUILD_TYPE=%{!?debug:Release}%{?debug:Debug} \
 	-DBUILD_smoke=%{!?with_smoke:OFF}%{?with_smoke:ON} \
 	-DBUILD_ruby=%{!?with_ruby:OFF}%{?with_ruby:ON} \
-%if "%{_lib}" == "lib64"
-	-DLIB_SUFFIX=64 \
-%endif
 	../
 
 %{__make}
