@@ -14,7 +14,7 @@ Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
 Version:	4.6.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
@@ -236,7 +236,7 @@ cd build
 %cmake \
 	-DBUILD_smoke=%{!?with_smoke:OFF}%{?with_smoke:ON} \
 	-DBUILD_ruby=%{!?with_ruby:OFF}%{?with_ruby:ON} \
-	-DPERL_SITE_ARCH_DIR=%{perl_vendorarch} \
+	-DCUSTOM_PERL_SITE_ARCH_DIR=%{perl_vendorarch} \
 	../
 
 %{__make}
