@@ -7,30 +7,21 @@
 %define		_state		stable
 %define		orgname		kdebindings
 %define		qtver		4.7.1
-%define		sipver		2:4.11.1
-%define		pyqtver		4.7.2
+%define		sipver		2:4.12
+%define		pyqtver		4.8.2
 
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.5.5
-Release:	5
+Version:	4.6.0
+Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	a1b3ed7fd4bf473e0e3e79c926bd6be2
+# Source0-md5:	4ec0e648b825916ee4be025a74cc6684
 Patch100:	%{name}-branch.diff
-Patch0:		%{name}-sip.patch
 Patch1:		%{name}-hack.patch
 BuildRequires:	PolicyKit-devel
-BuildRequires:	QtDesigner-devel >= %{qtver}
-BuildRequires:	QtGui-devel >= %{qtver}
-BuildRequires:	QtOpenGL-devel >= %{qtver}
-BuildRequires:	QtSql-devel >= %{qtver}
-BuildRequires:	QtSvg-devel >= %{qtver}
-BuildRequires:	QtTest-devel >= %{qtver}
-BuildRequires:	QtUiTools-devel >= %{qtver}
-BuildRequires:	QtWebKit-devel >= %{qtver}
 BuildRequires:	akonadi-devel
 BuildRequires:	attica-devel
 BuildRequires:	automoc4 >= 0.9.88
@@ -212,7 +203,6 @@ pliki nagłówkowe dla qyoto.
 %prep
 %setup -q -n %{orgname}-%{version}
 #%patch100 -p0
-%patch0 -p1
 %patch1 -p1
 # Very ugly hack, but damn, i'm sick of this package
 %if %{without smoke}
