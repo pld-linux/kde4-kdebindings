@@ -236,6 +236,7 @@ cd build
 %cmake \
 	-DBUILD_smoke=%{!?with_smoke:OFF}%{?with_smoke:ON} \
 	-DBUILD_ruby=%{!?with_ruby:OFF}%{?with_ruby:ON} \
+	-DPERL_SITE_ARCH_DIR=%{perl_vendorarch} \
 	../
 
 %{__make}
@@ -494,10 +495,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/prcc4_bin
 %attr(755,root,root) %{_bindir}/qdbusxml2perl
-%{perl_sitearch}/*.pm
-%{perl_sitearch}/QtCore4
-%dir %{perl_sitearch}/auto/*
-%attr(755,root,root) %{perl_sitearch}/auto/*/*.so
+%{perl_vendorarch}/*.pm
+%{perl_vendorarch}/QtCore4
+%dir %{perl_vendorarch}/auto/*
+%attr(755,root,root) %{perl_vendorarch}/auto/*/*.so
 
 %files -n python-PyKDE4
 %defattr(644,root,root,755)
