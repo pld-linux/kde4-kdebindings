@@ -8,7 +8,7 @@
 %define		orgname		kdebindings
 %define		qtver		4.7.1
 %define		sipver		2:4.12
-%define		pyqtver		4.8.2
+%define		pyqtver		4.8.2-3
 
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
@@ -34,6 +34,7 @@ BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kde4-kdepimlibs-devel >= %{version}
 %{?with_dotnet:BuildRequires:	mono-csharp}
 %{?with_dotnet:BuildRequires:	monodoc}
+BuildRequires:	perl-devel
 BuildRequires:	phonon-devel >= 4.4.1
 BuildRequires:	pkgconfig
 BuildRequires:	polkit-qt-gui-devel >= 0.9.3
@@ -108,6 +109,17 @@ Ruby header files.
 
 %description ruby-devel -l pl.UTF-8
 Pliki nagłówkowe dla ruby.
+
+%package perl-devel
+Summary:	Perl header files
+Summary(pl.UTF-8):	Pliki nagłówkowe dla perl
+Group:		X11/Development/Libraries
+
+%description perl-devel
+Perl header files.
+
+%description perl-devel -l pl.UTF-8
+Pliki nagłówkowe dla perl.
 
 %package smoke-qt
 Summary:	A SMOKE library for qt
@@ -477,6 +489,15 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_includedir}/qtruby
 %{_includedir}/qtruby/*.h
 %endif
+
+%files perl-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/prcc4_bin
+%attr(755,root,root) %{_bindir}/qdbusxml2perl
+%{perl_sitearch}/*.pm
+%{perl_sitearch}/QtCore4
+%dir %{perl_sitearch}/auto/*
+%attr(755,root,root) %{perl_sitearch}/auto/*/*.so
 
 %files -n python-PyKDE4
 %defattr(644,root,root,755)
