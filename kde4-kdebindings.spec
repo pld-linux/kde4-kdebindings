@@ -6,19 +6,19 @@
 
 %define		_state		stable
 %define		orgname		kdebindings
-%define		qtver		4.7.1
+%define		qtver		4.7.2
 %define		sipver		2:4.12
 %define		pyqtver		4.8.2-3
 
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.6.1
+Version:	4.6.2
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	bdb0180bdff41ad644155d2071c98c7a
+# Source0-md5:	358272911af2bf1ff76aca8a43358047
 Patch100:	%{name}-branch.diff
 Patch1:		%{name}-hack.patch
 BuildRequires:	PolicyKit-devel
