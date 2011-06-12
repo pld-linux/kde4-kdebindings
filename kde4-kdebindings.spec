@@ -13,12 +13,12 @@
 Summary:	KDE bindings to non-C++ languages
 Summary(pl.UTF-8):	Dowiązania KDE dla języków innych niż C++
 Name:		kde4-kdebindings
-Version:	4.6.3
+Version:	4.6.4
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	085f6497be800adea167addc09b89ccc
+# Source0-md5:	928680628d9d4f63b2606e4ccc3788a0
 Patch100:	%{name}-branch.diff
 Patch1:		%{name}-hack.patch
 BuildRequires:	PolicyKit-devel
@@ -27,6 +27,7 @@ BuildRequires:	attica-devel
 BuildRequires:	automoc4 >= 0.9.88
 BuildRequires:	boost-devel
 BuildRequires:	cmake >= 2.8.0
+BuildRequires:	gdbm-devel
 BuildRequires:	kde4-kdebase-workspace-devel >= %{version}
 # for libsmokeokular
 BuildRequires:	kde4-kdegraphics-devel >= %{version}
