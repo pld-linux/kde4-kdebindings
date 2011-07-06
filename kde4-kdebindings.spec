@@ -16,7 +16,7 @@ Name:		kde4-kdebindings
 Version:	4.6.5
 Release:	1
 License:	GPL
-Group:		X11/Applications
+Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
 # Source0-md5:	c16e25613296edd82819b6e490360201
 Patch100:	%{name}-branch.diff
@@ -71,7 +71,7 @@ natywnych dla KDE zasobów i widgetów.
 %package kimono
 Summary:	C# Mono KDE4 bindings
 Summary(pl.UTF-8):	Dowiązania C# Mono do KDE4
-Group:		X11/Development/Libraries
+Group:		X11/Libraries
 
 %description kimono
 C# Mono KDE4 bindings.
@@ -79,121 +79,10 @@ C# Mono KDE4 bindings.
 %description kimono -l pl.UTF-8
 Dowiązania C# Mono do KDE4.
 
-%package ruby-qt
-Summary:	A SMOKE library for qt
-Summary(pl.UTF-8):	Biblioteka SMOKE dla qt
-Group:		X11/Development/Libraries
-
-%description ruby-qt
-A Qt bindings for Ruby using the SMOKE technology.
-
-%description ruby-qt -l pl.UTF-8
-Dowiązania Qt dla Ruby przy użyciu technologii SMOKE.
-
-%package ruby-kde
-Summary:	A SMOKE library for qt
-Summary(pl.UTF-8):	Biblioteka SMOKE dla qt
-Group:		X11/Development/Libraries
-
-%description ruby-kde
-A KDE bindings for Ruby using the SMOKE technology.
-
-%description ruby-kde -l pl.UTF-8
-
-%package ruby-devel
-Summary:	Ruby header files
-Summary(pl.UTF-8):	Pliki nagłówkowe dla ruby
-Group:		X11/Development/Libraries
-
-%description ruby-devel
-Ruby header files.
-
-%description ruby-devel -l pl.UTF-8
-Pliki nagłówkowe dla ruby.
-
-%package perl-devel
-Summary:	Perl header files
-Summary(pl.UTF-8):	Pliki nagłówkowe dla perl
-Group:		X11/Development/Libraries
-
-%description perl-devel
-Perl header files.
-
-%description perl-devel -l pl.UTF-8
-Pliki nagłówkowe dla perl.
-
-%package smoke-qt
-Summary:	A SMOKE library for qt
-Summary(pl.UTF-8):	Biblioteka SMOKE dla qt
-Group:		X11/Development/Libraries
-
-%description smoke-qt
-SMOKE library (Scripting Meta Object Kompiler Engine) dla qt.
-
-%description smoke-qt -l pl.UTF-8
-Biblioteka SMOKE (Silnik kompilatora metaobiektów skryptowych) dla qt.
-
-%package smoke-kde
-Summary:	A SMOKE library for qt
-Summary(pl.UTF-8):	Biblioteka SMOKE dla qt
-Group:		X11/Development/Libraries
-
-%description smoke-kde
-SMOKE library (Scripting Meta Object Kompiler Engine) dla KDE4.
-
-%description smoke-kde -l pl.UTF-8
-Biblioteka SMOKE (Silnik kompilatora metaobiektów skryptowych) dla
-KDE4.
-
-%package smoke-devel
-Summary:	smoke header files
-Summary(pl.UTF-8):	Pliki nagłówkowe dla smoke
-Group:		X11/Development/Libraries
-
-%description smoke-devel
-Smoke header files.
-
-%description smoke-devel -l pl.UTF-8
-Pliki nagłówkowe dla smoke.
-
-%package -n python-PyKDE4
-Summary:	Python bindings for KDE
-Summary(pl.UTF-8):	Dowiązania do KDE dla Pyth
-Group:		Libraries/Python
-Requires:	python-PyQt4 >= %{pyqtver}
-Requires:	python-sip >= %{sipver}
-
-%description -n python-PyKDE4
-PyKDE is a set of Python bindings for the KDE desktop environment. The
-bindings are implemented as a set of Python modules: dcop, kdecore,
-kdesu, kdefx (KDE 3.0 and later), kdeui, kio, kfile, kparts, khtml,
-kjs, kspell and kdeprint (KDE 2.2.0 and later). The modules correspond
-to libraries in the kdelibs package. PyKDE supports nearly all classes
-and methods in these libraries.
-
-%description -n python-PyKDE4 -l pl.UTF-8
-PyKDE jest zbiorem dowiązań do KDE dla języka Python. Dowiązania są
-zaimplementowane jako zbiór modułów Pythona: dcop, kdecore, kdesu,
-kdefix (KDE 3.0 i późniejsze), kdeui, kio, kfile, kparts, khtml, kjs,
-kspell i kdeprint (KDE 2.2.0 i późniejsze). Moduły odpowiadają
-bibliotekom w pakiecie kdelibs. PyKDE wspiera prawie wszystkie klasy i
-metody w wymienionych bibliotekach.
-
-%package -n python-PyKDE4-examples
-Summary:	PyKDE4 examples
-Summary(pl.UTF-8):	Przykłady PyKDE4
-Group:		Libraries/Python
-
-%description -n python-PyKDE4-examples
-PyKDE4 examples
-
-%description -n python-PyKDE4-examples -l pl.UTF-8
-Przykłady PyKDE4
-
 %package -n qyoto
 Summary:	C# Mono Qt4 bindings
 Summary(pl.UTF-8):	Dowiązania C# Mono dla Qt4
-Group:		X11/Development/Libraries
+Group:		X11/Libraries
 
 %description -n qyoto
 C# Mono Qt4 bindings.
@@ -203,7 +92,7 @@ Dowiązania C# Mono dla Qt4.
 
 %package -n qyoto-devel
 Summary:	qyoto header files
-Summary(pl.UTF-8):	pliki nagłówkowe dla qyoto
+Summary(pl.UTF-8):	Pliki nagłówkowe dla qyoto
 Group:		X11/Development/Libraries
 Requires:	qyoto = %{version}-%{release}
 
@@ -211,7 +100,146 @@ Requires:	qyoto = %{version}-%{release}
 qyoto header files.
 
 %description -n qyoto-devel -l pl.UTF-8
-pliki nagłówkowe dla qyoto.
+Pliki nagłówkowe dla qyoto.
+
+%package ruby-qt
+Summary:	Qt bindings for Ruby
+Summary(pl.UTF-8):	Dowiązania Qt dla języka Ruby
+Group:		X11/Libraries
+
+%description ruby-qt
+A Qt bindings for Ruby using the SMOKE technology.
+
+%description ruby-qt -l pl.UTF-8
+Dowiązania Qt dla języka Ruby przy użyciu technologii SMOKE.
+
+%package ruby-kde
+Summary:	KDE bindings for Ruby
+Summary(pl.UTF-8):	Dowiązania KDE dla języka Ruby
+Group:		X11/Libraries
+
+%description ruby-kde
+A KDE bindings for Ruby using the SMOKE technology.
+
+%description ruby-kde -l pl.UTF-8
+Dowiązania KDE dla języka Ruby przy użyciu technologii SMOKE.
+
+%package ruby-devel
+Summary:	KDE header files for Ruby
+Summary(pl.UTF-8):	Pliki nagłówkowe KDE dla języka Ruby
+Group:		X11/Development/Libraries
+Requires:	%{name}-ruby-qt = %{version}-%{release}
+
+%description ruby-devel
+KDE header files for Ruby.
+
+%description ruby-devel -l pl.UTF-8
+Pliki nagłówkowe KDE dla języka Ruby.
+
+%package perl-devel
+Summary:	KDE bindings for Perl 
+Summary(pl.UTF-8):	Dowiązania KDE dla Perla
+Group:		Development/Languages/perl
+
+%description perl-devel
+KDE bindings for Perl.
+
+%description perl-devel -l pl.UTF-8
+Dowiązania KDE dla Perla.
+
+%package smoke-qt
+Summary:	A SMOKE library for Qt
+Summary(pl.UTF-8):	Biblioteka SMOKE dla Qt
+Group:		X11/Libraries
+
+%description smoke-qt
+SMOKE library (Scripting Meta Object Kompiler Engine) dla Qt.
+
+%description smoke-qt -l pl.UTF-8
+Biblioteka SMOKE (Scripting Meta Object Kompiler Engine - silnik
+kompilatora metaobiektów skryptowych) dla Qt.
+
+%package smoke-kde
+Summary:	A SMOKE library for KDE 4
+Summary(pl.UTF-8):	Biblioteka SMOKE dla KDE 4
+Group:		X11/Libraries
+
+%description smoke-kde
+SMOKE library (Scripting Meta Object Kompiler Engine) dla KDE 4.
+
+%description smoke-kde -l pl.UTF-8
+Biblioteka SMOKE (Scripting Meta Object Kompiler Engine - silnik
+kompilatora metaobiektów skryptowych) dla KDE 4.
+
+%package smoke-devel
+Summary:	Header files for SMOKE libraries
+Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek SMOKE
+Group:		X11/Development/Libraries
+Requires:	%{name}-smoke-kde = %{version}-%{release}
+Requires:	%{name}-smoke-qt = %{version}-%{release}
+
+%description smoke-devel
+Header files for SMOKE libraries.
+
+%description smoke-devel -l pl.UTF-8
+Pliki nagłówkowe bibliotek SMOKE.
+
+%package -n python-PyKDE4
+Summary:	PyKDE4 - Python bindings for KDE 4
+Summary(pl.UTF-8):	PyKDE4 - dowiązania KDE 4 dla Pythona
+Group:		Libraries/Python
+Requires:	python-PyQt4 >= %{pyqtver}
+Requires:	python-sip >= %{sipver}
+
+%description -n python-PyKDE4
+PyKDE4 is a set of Python bindings for the KDE 4 desktop environment.
+The bindings are implemented as a set of Python modules, which
+correspond to KDE libraries.
+
+%description -n python-PyKDE4 -l pl.UTF-8
+PyKDE4 to zbiór dowiązań środowiska graficznego KDE 4 dla Pythona.
+Dowiązania są zaimplementowane jako zbiór modułów Pythona
+odpowiadających poszczególnym bibliotekom KDE.
+
+%package -n python-PyKDE4-devel
+Summary:	SIP development files for PyKDE4
+Summary(pl.UTF-8):	Pliki programistyczne SIP dla PyKDE4
+Group:		Development/Languages/Python
+Requires:	python-PyKDE4 = %{version}-%{release}
+Requires:	python-PyQt4-devel >= %{pyqtver}
+Requires:	python-sip-devel >= %{sipver}
+
+%description -n python-PyKDE4-devel
+SIP development files for PyKDE4, needed to build other bindings for
+C++ classes that inherit from any of the KDE4 classes.
+
+%description -n python-PyKDE4-devel -l pl.UTF-8
+Pliki programistyczne SIP dla PyKDE4, potrzebne do budowania innych
+dowiązań do klas C++ dziedziczących z dowolnej klasy KDE4.
+
+%package -n python-PyKDE4-devel-tools
+Summary:	PyKDE4 development tools
+Summary(pl.UTF-8):	Narzędzia programistyczne PyKDE4
+Group:		Development/Languages/Python
+Requires:	python-PyKDE4 = %{version}-%{release}
+Requires:	python-PyQt4-devel-tools >= %{pyqtver}
+
+%description -n python-PyKDE4-devel-tools
+PyKDE4 development tool: pykdeuic4.
+
+%description -n python-PyKDE4-devel-tools -l pl.UTF-8
+Narzędzie programistyczne PyKDE4: pykdeuic4.
+
+%package -n python-PyKDE4-examples
+Summary:	PyKDE4 examples
+Summary(pl.UTF-8):	Przykłady dla PyKDE4
+Group:		Libraries/Python
+
+%description -n python-PyKDE4-examples
+PyKDE4 examples.
+
+%description -n python-PyKDE4-examples -l pl.UTF-8
+Przykłady dla PyKDE4.
 
 %prep
 %setup -q -n %{orgname}-%{version}
@@ -244,18 +272,18 @@ cd build
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_examplesdir}/python-PyKDE4-%{version}
 
-install -d $RPM_BUILD_ROOT%{_examplesdir}/pykde4
 %{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_htmldir=%{_kdedocdir}
 
-mv $RPM_BUILD_ROOT%{_datadir}/apps/pykde4/examples/* $RPM_BUILD_ROOT%{_examplesdir}/pykde4
+mv $RPM_BUILD_ROOT%{_datadir}/apps/pykde4/examples/* $RPM_BUILD_ROOT%{_examplesdir}/python-PyKDE4-%{version}
 %py_comp $RPM_BUILD_ROOT%{py_sitedir}/PyKDE4
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}/PyKDE4
 
 # don't use py_postclean
-rm $RPM_BUILD_ROOT%{py_sitedir}/PyKDE4/*.py
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/PyKDE4/*.py
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -503,51 +531,55 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n python-PyKDE4
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/pykdeuic4
 %attr(755,root,root) %{_libdir}/kde4/kpythonpluginfactory.so
 %attr(755,root,root) %{_libdir}/kde4/krosspython.so
 %dir %{py_sitedir}/PyKDE4
-%{py_sitedir}/PyKDE4/kdecore.so
-%{py_sitedir}/PyKDE4/solid.so
-%{py_sitedir}/PyKDE4/kdeui.so
-%{py_sitedir}/PyKDE4/kio.so
-%{py_sitedir}/PyKDE4/kutils.so
-%{py_sitedir}/PyKDE4/kparts.so
-%{py_sitedir}/PyKDE4/ktexteditor.so
-%{py_sitedir}/PyKDE4/khtml.so
-%{py_sitedir}/PyKDE4/knewstuff.so
-%{py_sitedir}/PyKDE4/dnssd.so
-%{py_sitedir}/PyKDE4/phonon.so
-%{py_sitedir}/PyKDE4/plasma.so
-%{py_sitedir}/PyKDE4/soprano.so
-%{py_sitedir}/PyKDE4/nepomuk.so
-%{py_sitedir}/PyKDE4/akonadi.so
-%{py_sitedir}/PyKDE4/polkitqt.so
+%attr(755,root,root) %{py_sitedir}/PyKDE4/akonadi.so
+%attr(755,root,root) %{py_sitedir}/PyKDE4/dnssd.so
+%attr(755,root,root) %{py_sitedir}/PyKDE4/kdecore.so
+%attr(755,root,root) %{py_sitedir}/PyKDE4/kdeui.so
+%attr(755,root,root) %{py_sitedir}/PyKDE4/khtml.so
+%attr(755,root,root) %{py_sitedir}/PyKDE4/kio.so
+%attr(755,root,root) %{py_sitedir}/PyKDE4/knewstuff.so
+%attr(755,root,root) %{py_sitedir}/PyKDE4/kparts.so
+%attr(755,root,root) %{py_sitedir}/PyKDE4/ktexteditor.so
+%attr(755,root,root) %{py_sitedir}/PyKDE4/kutils.so
+%attr(755,root,root) %{py_sitedir}/PyKDE4/nepomuk.so
+%attr(755,root,root) %{py_sitedir}/PyKDE4/phonon.so
+%attr(755,root,root) %{py_sitedir}/PyKDE4/plasma.so
+%attr(755,root,root) %{py_sitedir}/PyKDE4/polkitqt.so
+%attr(755,root,root) %{py_sitedir}/PyKDE4/solid.so
+%attr(755,root,root) %{py_sitedir}/PyKDE4/soprano.so
 %{py_sitedir}/PyKDE4/__init__.py[co]
 %{py_sitedir}/PyKDE4/pykdeconfig.py[co]
+
+%files -n python-PyKDE4-devel
+%defattr(644,root,root,755)
+%dir %{_datadir}/sip/PyKDE4
+%{_datadir}/sip/PyKDE4/akonadi
+%{_datadir}/sip/PyKDE4/dnssd
+%{_datadir}/sip/PyKDE4/kdecore
+%{_datadir}/sip/PyKDE4/kdeui
+%{_datadir}/sip/PyKDE4/khtml
+%{_datadir}/sip/PyKDE4/kio
+%{_datadir}/sip/PyKDE4/knewstuff
+%{_datadir}/sip/PyKDE4/kparts
+%{_datadir}/sip/PyKDE4/ktexteditor
+%{_datadir}/sip/PyKDE4/kutils
+%{_datadir}/sip/PyKDE4/nepomuk
+%{_datadir}/sip/PyKDE4/phonon
+%{_datadir}/sip/PyKDE4/plasma
+%{_datadir}/sip/PyKDE4/polkitqt
+%{_datadir}/sip/PyKDE4/solid
+%{_datadir}/sip/PyKDE4/soprano
 %{_datadir}/sip/PyKDE4/glossary.html
 
+%files -n python-PyKDE4-devel-tools
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/pykdeuic4
 %{py_sitedir}/PyQt4/uic/pykdeuic4.py*
 %{py_sitedir}/PyQt4/uic/widget-plugins/kde4.py*
 
-%dir %{_datadir}/sip/PyKDE4
-%{_datadir}/sip/PyKDE4/nepomuk
-%{_datadir}/sip/PyKDE4/knewstuff
-%{_datadir}/sip/PyKDE4/dnssd
-%{_datadir}/sip/PyKDE4/solid
-%{_datadir}/sip/PyKDE4/akonadi
-%{_datadir}/sip/PyKDE4/kio
-%{_datadir}/sip/PyKDE4/ktexteditor
-%{_datadir}/sip/PyKDE4/khtml
-%{_datadir}/sip/PyKDE4/soprano
-%{_datadir}/sip/PyKDE4/kdecore
-%{_datadir}/sip/PyKDE4/phonon
-%{_datadir}/sip/PyKDE4/plasma
-%{_datadir}/sip/PyKDE4/kdeui
-%{_datadir}/sip/PyKDE4/kutils
-%{_datadir}/sip/PyKDE4/kparts
-%{_datadir}/sip/PyKDE4/polkitqt
-
 %files -n python-PyKDE4-examples
 %defattr(644,root,root,755)
-%{_examplesdir}/pykde4
+%{_examplesdir}/python-PyKDE4-%{version} pykde4
