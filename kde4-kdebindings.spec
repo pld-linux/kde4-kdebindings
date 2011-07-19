@@ -432,7 +432,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libsmokeplasma.so
 %attr(755,root,root) %{_libdir}/libsmokesolid.so
 %attr(755,root,root) %{_libdir}/libsmokesoprano.so
-%attr(755,root,root) %{_libdir}/libsmokeqimageblitz.so
 %attr(755,root,root) %{_libdir}/libsmokenepomukquery.so
 %attr(755,root,root) %{_libdir}/libsmokeokular.so
 %attr(755,root,root) %{_libdir}/libsmokephonon.so
@@ -582,4 +581,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n python-PyKDE4-examples
 %defattr(644,root,root,755)
-%{_examplesdir}/python-PyKDE4-%{version} pykde4
+%{_examplesdir}/python-PyKDE4-%{version}
