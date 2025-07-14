@@ -244,7 +244,7 @@ Przykłady dla PyKDE4.
 %prep
 %setup -q -n %{orgname}-%{version}
 #%patch100 -p0
-%patch1 -p1
+%patch -P1 -p1
 # Very ugly hack, but damn, i'm sick of this package
 %if %{without smoke}
 %{__sed} -i -e 's/macro_optional_add_subdirectory(smoke)//' CMakeLists.txt
